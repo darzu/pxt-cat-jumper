@@ -2,7 +2,8 @@
     "name": "Cat Jumper (REFERENCE)",
     "dependencies": {
         "device": "*",
-        "animation": "*"
+        "animation": "*",
+        "Color Fading": "github:jwunderl/pxt-color#v0.0.30"
     },
     "description": "",
     "files": [

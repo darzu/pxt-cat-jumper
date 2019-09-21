@@ -20,79 +20,12 @@ function take_damage () {
     }
 }
 function start_level () {
+    if (current_level < 4) {
+        biome = 0
+    } else {
+        biome = 1
+    }
     scene.setTileMap(levels[current_level])
-    scene.setTile(12, img`
-7 7 7 7 5 7 7 7 7 7 7 7 7 7 7 7 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-7 7 7 6 7 7 7 7 6 7 7 7 7 7 7 7 
-6 7 e 7 7 6 7 6 e 7 6 7 e 7 e 6 
-e 6 e 7 6 e 6 e e e 7 6 e 6 e e 
-e e e e e e e e e e e e e e e e 
-e e e e e e e e e e e e e e e e 
-e e e e e e e e e e e e e b e e 
-e e e e e e e e b e e e e e e e 
-e e b e e e e e e e e e e e e e 
-e e e e e e e e e e e e e e e e 
-e e e e e e e e e e e e e e e e 
-e e e e e e e e e e e e e b e e 
-e e e e e e b e e e e e e e e e 
-e b e e e e e e e e e e e e e e 
-e e e e e e e e e e e e e e e e 
-`, true)
-    scene.setTile(11, img`
-e e e e e e e e e e e e e e e e 
-e e e e e e e e e e e e e e e e 
-e e e e e e e e e b e e e e e e 
-e e e e e e e e e e e e e e e e 
-e e e e b e e e e e e e e b e e 
-e e e e e e e e e e e e e e e e 
-e e e e e e e b e e e e e e e e 
-e e e e e e e e e e e e e e e e 
-e e e e e e e e e e e e e e e e 
-e e e e e e e e e e e e e e e e 
-e b e e e e e e e e e b e e e e 
-e e e e e e e e e e e e e e e e 
-e e e e e b e e e e e e e e e e 
-e e e e e e e e e e e e b e e e 
-e e e e e e e e e e e e e e e e 
-e e e e e e e e e e e e e e e e 
-`, true)
-    scene.setTile(13, img`
-e b e e e e e e e e e e e e e e 
-e e e e e e e e e e e e e b e e 
-e e e e e e e e e e e c e e e e 
-e e e e e b e e e e e e e e e e 
-e e c e e e e e e e e e e e e e 
-e e e e e e e e e e e e b e e e 
-e e e e e e e c e e e e e e e e 
-e b e e e e e e e e b e e e c c 
-c e e e c e e e e e e c e e e e 
-e e c e e c b e c c e e e c b c 
-c c c c c c c e c e e c e c c c 
-c . . . c c c 3 c c c c . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`, true)
-    scene.setTile(7, img`
-7 7 7 7 5 7 7 7 7 7 7 7 7 7 7 7 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-7 7 7 6 7 7 7 7 6 7 7 7 7 7 7 7 
-6 7 e 7 7 6 7 6 e 7 6 7 e 7 e 6 
-e 6 e 7 6 e 6 e e e 7 6 e 6 e e 
-e e e e e e e e e e e e e e e e 
-e e e e e e e e e e e e e e e e 
-e b e e e e e e e e b e e e c c 
-c e e e c e e e e e e c e e e e 
-e e c e e c b e c c e e e c b c 
-c c c c c c c e c e e c e c c c 
-c . . . c c c 3 c c c c . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`, true)
     scene.setTile(2, img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -220,27 +153,31 @@ c . . . c c c 3 c c c c . . . .
 . . . . . . . . . . . . . . . . 
 `, false)
     scene.placeOnRandomTile(cat, 3)
+    set_biome()
     for (let value of sprites.allOfKind(SpriteKind.Trap)) {
         value.destroy()
     }
-    for (let value of sprites.allOfKind(SpriteKind.Coin)) {
-        value.destroy()
+    for (let value2 of sprites.allOfKind(SpriteKind.Coin)) {
+        value2.destroy()
     }
-    for (let value of sprites.allOfKind(SpriteKind.Flower)) {
-        value.destroy()
+    for (let value3 of sprites.allOfKind(SpriteKind.Flower)) {
+        value3.destroy()
     }
-    for (let value of sprites.allOfKind(SpriteKind.Terrain)) {
-        value.destroy()
+    for (let value4 of sprites.allOfKind(SpriteKind.Terrain)) {
+        value4.destroy()
     }
-    for (let value of sprites.allOfKind(SpriteKind.Portal)) {
-        value.destroy()
+    for (let value5 of sprites.allOfKind(SpriteKind.Portal)) {
+        value5.destroy()
     }
-    for (let value of sprites.allOfKind(SpriteKind.spikes)) {
-        value.destroy()
+    for (let value6 of sprites.allOfKind(SpriteKind.spikes)) {
+        value6.destroy()
     }
     if (current_level == 3) {
         pause(100)
         game.showLongText("\"B\" to crouch and leap", DialogLayout.Bottom)
+    } else if (current_level == 0) {
+        game.showLongText("Reach the portal", DialogLayout.Bottom)
+        game.showLongText("Pounce on foes", DialogLayout.Bottom)
     }
     exit_portal = sprites.create(img`
 . . . . . 5 5 5 . . . . . . . . 
@@ -261,7 +198,7 @@ c . . . c c c 3 c c c c . . . .
 . . . . . 5 5 5 5 . . . . . . . 
 `, SpriteKind.Portal)
     scene.placeOnRandomTile(exit_portal, 2)
-    for (let value of scene.getTilesByType(4)) {
+    for (let value7 of scene.getTilesByType(4)) {
         coin = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -280,7 +217,7 @@ c . . . c c c 3 c c c c . . . .
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `, SpriteKind.Coin)
-        value.place(coin)
+        value7.place(coin)
         coin.y += -5
         animation.runImageAnimation(
         coin,
@@ -431,28 +368,11 @@ c . . . c c c 3 c c c c . . . .
         true
         )
     }
-    for (let value of scene.getTilesByType(5)) {
-        bee_flower = sprites.create(img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . 5 . . . . . . . . 
-. . . . . . 2 2 2 . . . . . . . 
-. . . . . . 4 2 4 . . . . . . . 
-. . . . 7 7 8 7 8 7 7 . . . . . 
-. . . . 6 7 7 7 7 7 6 . . . . . 
-. . . . . 6 6 7 6 6 . . . . . . 
-. . . . . . . 7 . . . . . . . . 
-`, SpriteKind.Flower)
-        value.place(bee_flower)
+    for (let value8 of scene.getTilesByType(5)) {
+        bee_flower = sprites.create(flower_image, SpriteKind.Flower)
+        value8.place(bee_flower)
     }
-    for (let value of scene.getTilesByType(10)) {
+    for (let value9 of scene.getTilesByType(10)) {
         fireball = sprites.create(img`
 . . . . . . . . 
 . . . . . . . . 
@@ -463,7 +383,7 @@ c . . . c c c 3 c c c c . . . .
 . . 2 2 2 . . . 
 . . . . . . . . 
 `, SpriteKind.Trap)
-        value.place(fireball)
+        value9.place(fireball)
         animation.runMovementAnimation(
         fireball,
         "c 0 -100 0 100 0 0",
@@ -472,7 +392,7 @@ c . . . c c c 3 c c c c . . . .
         )
         fireball.startEffect(effects.fire)
     }
-    for (let value of scene.getTilesByType(9)) {
+    for (let value10 of scene.getTilesByType(9)) {
         squeeze_grass = sprites.create(img`
 e e e e e e e e e e e e e e e e 
 e e e e e e e e e e e e e e e e 
@@ -491,10 +411,10 @@ e e 7 e e 7 e e e e e e e e 7 e
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `, SpriteKind.Terrain)
-        value.place(squeeze_grass)
+        value10.place(squeeze_grass)
     }
-    for (let value of scene.getTilesByType(6)) {
-        spikes = sprites.create(img`
+    for (let value11 of scene.getTilesByType(6)) {
+        spikes2 = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -512,7 +432,7 @@ e e e e e e e e e e e e b e e e
 e e e e e e e e e e e e e e e e 
 e e e e e e e e e e e e e e e e 
 `, SpriteKind.spikes)
-        value.place(spikes)
+        value11.place(spikes2)
     }
     info.setLife(3)
 }
@@ -521,116 +441,84 @@ scene.onHitTile(SpriteKind.Player, 0, function (sprite) {
         take_damage()
     }
 })
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (cat.vy == 0) {
-        launch()
-    }
-})
-function launch () {
-    if (7 < charge) {
-        charge = 0
-        x_speed = 200
-        cat.vy = -190
-    } else {
-        cat.vy = -150
-    }
-}
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    if (sprite.bottom < otherSprite.bottom) {
-        info.changeScoreBy(2)
-    } else {
-        info.changeLifeBy(-1)
-    }
-    otherSprite.destroy()
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Trap, function (sprite, otherSprite) {
-    take_damage()
-})
-function stop () {
-    cat.vx = 0
-}
-function jump () {
-    cat.vy = -150
-}
-function go () {
-    cat.vx = 80
-}
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Flower, function (sprite, otherSprite) {
-    otherSprite.destroy()
-    bee = sprites.create(img`
-. . f . f f . . 
-. f 1 f 1 1 f . 
-. . . f f f . . 
-. . f 5 f 5 f . 
-. f 5 f 5 f 5 f 
-. f 5 f 5 5 5 f 
-. . f 5 f 5 f . 
-. . . f f f . . 
-`, SpriteKind.Enemy)
-    bee_x = scene.screenWidth() / 2 + sprite.x
-    bee_y = Math.max(0, sprite.y - scene.screenHeight() / 2)
-    bee.setPosition(bee_x, bee_y)
-    animation.runImageAnimation(
-    bee,
-    [img`
-. . f . f f . . 
-. f 1 f 1 1 f . 
-. . . f f f . . 
-. . f 5 f 5 f . 
-. f 5 f 5 f 5 f 
-. f 5 f 5 5 5 f 
-. . f 5 f 5 f . 
-. . . f f f . . 
-`, img`
-. . . . . . . . 
-. . . . . . . . 
-. . . f f f . . 
-. . f 1 f 1 f . 
-. f 5 f 5 f 5 f 
-. f 5 f 5 5 5 f 
-. . f 5 f 5 f . 
-. . . f f f . . 
-`],
-    50,
-    true
-    )
-    bee.follow(cat)
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Coin, function (sprite, otherSprite) {
-    animation.runMovementAnimation(
-    otherSprite,
-    animation.animationPresets(animation.easeUp),
-    1000,
-    false
-    )
-    info.changeScoreBy(1)
-    pause(500)
-    otherSprite.destroy()
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Terrain, function (sprite, otherSprite) {
-    x_diff = 0 - sprite.vx / 40
-    sprite.x += x_diff
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.spikes, function (sprite, otherSprite) {
-    cat.vy = -100
-    info.changeLifeBy(-1)
-})
-let x_diff = 0
-let bee_y = 0
-let bee_x = 0
-let bee: Sprite = null
-let x_speed = 0
-let charge = 0
-let spikes: Sprite = null
-let squeeze_grass: Sprite = null
-let fireball: Sprite = null
-let bee_flower: Sprite = null
-let coin: Sprite = null
-let exit_portal: Sprite = null
-let current_level = 0
-let levels: Image[] = []
-let cat: Sprite = null
-scene.setBackgroundImage(img`
+function set_biome () {
+    if (biome == 0) {
+        color.setPalette(
+        color.originalPalette
+        )
+        scene.setTile(12, img`
+7 7 7 7 5 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 6 7 7 7 7 6 7 7 7 7 7 7 7 
+6 7 e 7 7 6 7 6 e 7 6 7 e 7 e 6 
+e 6 e 7 6 e 6 e e e 7 6 e 6 e e 
+e e e e e e e e e e e e e e e e 
+e e e e e e e e e e e e e e e e 
+e e e e e e e e e e e e e b e e 
+e e e e e e e e b e e e e e e e 
+e e b e e e e e e e e e e e e e 
+e e e e e e e e e e e e e e e e 
+e e e e e e e e e e e e e e e e 
+e e e e e e e e e e e e e b e e 
+e e e e e e b e e e e e e e e e 
+e b e e e e e e e e e e e e e e 
+e e e e e e e e e e e e e e e e 
+`, true)
+        scene.setTile(11, img`
+e e e e e e e e e e e e e e e e 
+e e e e e e e e e e e e e e e e 
+e e e e e e e e e b e e e e e e 
+e e e e e e e e e e e e e e e e 
+e e e e b e e e e e e e e b e e 
+e e e e e e e e e e e e e e e e 
+e e e e e e e b e e e e e e e e 
+e e e e e e e e e e e e e e e e 
+e e e e e e e e e e e e e e e e 
+e e e e e e e e e e e e e e e e 
+e b e e e e e e e e e b e e e e 
+e e e e e e e e e e e e e e e e 
+e e e e e b e e e e e e e e e e 
+e e e e e e e e e e e e b e e e 
+e e e e e e e e e e e e e e e e 
+e e e e e e e e e e e e e e e e 
+`, true)
+        scene.setTile(13, img`
+e b e e e e e e e e e e e e e e 
+e e e e e e e e e e e e e b e e 
+e e e e e e e e e e e c e e e e 
+e e e e e b e e e e e e e e e e 
+e e c e e e e e e e e e e e e e 
+e e e e e e e e e e e e b e e e 
+e e e e e e e c e e e e e e e e 
+e b e e e e e e e e b e e e c c 
+c e e e c e e e e e e c e e e e 
+e e c e e c b e c c e e e c b c 
+c c c c c c c e c e e c e c c c 
+c . . . c c c 3 c c c c . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, true)
+        scene.setTile(7, img`
+7 7 7 7 5 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 6 7 7 7 7 6 7 7 7 7 7 7 7 
+6 7 e 7 7 6 7 6 e 7 6 7 e 7 e 6 
+e 6 e 7 6 e 6 e e e 7 6 e 6 e e 
+e e e e e e e e e e e e e e e e 
+e e e e e e e e e e e e e e e e 
+e b e e e e e e e e b e e e c c 
+c e e e c e e e e e e c e e e e 
+e e c e e c b e c c e e e c b c 
+c c c c c c c e c e e c e c c c 
+c . . . c c c c c c c c . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, true)
+        scene.setBackgroundImage(img`
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 
@@ -752,7 +640,374 @@ scene.setBackgroundImage(img`
 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 
 `)
-scene.setBackgroundColor(9)
+        flower_image = img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . 5 . . . . . . . . 
+. . . . . . 2 2 2 . . . . . . . 
+. . . . . . 4 2 4 . . . . . . . 
+. . . . 7 7 8 7 8 7 7 . . . . . 
+. . . . 6 7 7 7 7 7 6 . . . . . 
+. . . . . 6 6 7 6 6 . . . . . . 
+. . . . . . . 7 . . . . . . . . 
+`
+        bee_images = [img`
+. . f . f f . . 
+. f 1 f 1 1 f . 
+. . . f f f . . 
+. . f 5 f 5 f . 
+. f 5 f 5 f 5 f 
+. f 5 f 5 5 5 f 
+. . f 5 f 5 f . 
+. . . f f f . . 
+`, img`
+. . . . . . . . 
+. . . . . . . . 
+. . . f f f . . 
+. . f 1 f 1 f . 
+. f 5 f 5 f 5 f 
+. f 5 f 5 5 5 f 
+. . f 5 f 5 f . 
+. . . f f f . . 
+`]
+    } else {
+        color.setPalette(
+        color.originalPalette
+        )
+        scene.setTile(12, img`
+9 9 9 1 1 9 6 9 9 1 6 1 9 9 9 6 
+9 6 9 6 9 9 9 6 6 9 6 9 6 1 6 9 
+6 9 6 6 9 1 6 6 6 9 9 9 6 6 9 6 
+6 6 6 9 9 6 6 6 8 9 6 6 6 9 6 6 
+8 6 8 9 6 8 6 8 8 8 6 6 8 6 8 8 
+8 9 8 8 8 8 8 8 9 8 8 8 8 8 8 8 
+8 8 8 9 8 8 9 8 8 8 8 9 8 8 9 8 
+8 9 6 8 8 8 8 9 8 8 6 8 8 6 9 9 
+9 8 8 8 d 9 8 8 8 8 8 9 8 8 8 8 
+8 8 8 8 8 8 8 8 8 8 8 8 8 9 8 8 
+8 6 8 8 9 8 6 8 8 8 d 8 8 8 8 8 
+8 8 8 8 8 8 8 8 8 8 8 8 8 8 9 8 
+8 9 8 8 6 8 8 8 9 8 8 8 9 8 8 8 
+8 8 8 8 8 8 8 8 8 8 9 8 8 8 8 9 
+8 d 8 8 8 8 8 9 8 8 8 8 d 8 8 8 
+8 8 8 9 8 8 8 8 8 6 8 8 8 8 8 8 
+`, true)
+        scene.setTile(11, img`
+8 9 8 6 8 8 8 8 8 8 9 8 8 8 6 8 
+8 8 8 9 8 9 8 8 9 8 8 8 8 8 8 8 
+6 8 8 8 8 8 8 8 8 8 8 6 8 8 9 8 
+8 9 8 8 8 6 8 8 9 8 8 8 8 8 8 9 
+8 8 8 d 8 8 9 8 8 8 9 8 8 9 8 8 
+8 9 8 8 9 8 8 8 9 8 8 9 8 8 8 8 
+8 8 8 9 8 8 9 8 8 8 8 d 8 8 6 8 
+8 6 9 8 8 8 8 6 8 8 9 8 8 9 9 9 
+8 8 8 8 9 8 8 8 8 8 8 8 8 8 8 8 
+8 9 8 8 8 8 6 8 8 9 8 8 6 8 9 8 
+8 8 8 8 d 8 8 8 8 8 8 8 8 8 8 8 
+9 8 8 8 8 8 9 8 9 8 8 9 8 9 8 8 
+8 8 6 8 9 8 8 8 8 8 d 8 8 8 8 9 
+8 8 9 8 8 6 8 8 8 8 8 8 6 8 8 8 
+9 8 8 8 8 8 8 8 8 9 8 8 8 8 6 8 
+8 8 6 8 8 9 8 9 8 8 8 8 9 8 8 8 
+`, true)
+        scene.setTile(13, img`
+8 9 8 9 8 8 8 8 8 8 9 8 8 8 9 8 
+8 8 8 9 8 9 8 8 9 8 8 8 8 8 8 8 
+9 8 8 8 8 8 8 8 8 8 8 9 8 8 9 8 
+8 9 8 8 8 9 8 8 9 8 8 8 8 8 8 9 
+8 8 8 9 8 8 9 8 8 8 9 8 8 9 8 8 
+8 9 8 8 9 8 8 8 9 8 8 9 8 8 8 8 
+8 8 8 9 8 8 9 8 8 8 8 9 8 8 9 8 
+8 9 9 8 8 8 8 9 8 8 9 8 8 9 9 9 
+9 8 8 8 9 9 8 8 8 8 8 9 8 8 8 8 
+8 9 f 8 8 f f 8 f f 8 8 8 9 f f 
+f f f f f f f 8 f 8 8 f 8 f f f 
+f . . . f f f f f f f f . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, true)
+        scene.setTile(7, img`
+9 9 1 9 1 9 6 9 9 1 6 1 9 9 9 6 
+9 6 9 6 9 9 9 6 6 9 6 9 6 9 6 9 
+6 9 6 6 9 1 6 6 6 9 9 1 6 6 9 6 
+6 6 6 9 9 6 6 6 8 9 6 6 6 9 6 6 
+8 6 8 9 6 8 6 8 8 8 6 6 8 6 8 8 
+8 9 8 8 8 8 8 8 9 8 8 8 8 8 8 8 
+8 8 8 9 8 8 9 8 8 8 8 9 8 8 9 8 
+8 9 9 8 8 8 8 9 8 8 9 8 8 9 9 9 
+9 8 8 8 9 9 8 8 8 8 8 9 8 8 8 8 
+8 9 f 8 8 f f 8 f f 8 8 8 9 f f 
+f f f f f f f 8 f 8 8 f 8 f f f 
+f . . . f f f f f f f f . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, true)
+        scene.setBackgroundImage(img`
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c b b b b b b b b b b b b b b b b b b b b b b b c b b b b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c b b b b b b b b b b b b b b b b b b b b b c c c c b b b b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c b b b b b b b b b b b b b b b b b b b c c c c c c c c b b b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c b b b b b b b b b b b b b b c c c c c c c c c c c c b b b 
+b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c b b b b b b b b b b b c c c c c c c c c c c c c c c b 
+b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c b b b b b b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c b b b b b b b b c c c c c c c c c c c c c c c c c 
+b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c b b b b b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c b b b b b c c c c c c c c c c c c c c c c c c 
+b b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c b b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c b b c c c c c c c c c c c c c c c c c c c 
+b b b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+b b b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+b b b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+b b b b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+b b b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+b b b b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+b b b b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+b c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c 
+`)
+        flower_image = img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . 2 . . . . . . . . 
+. . . . . . 3 3 3 . . . . . . . 
+. . . . . . 8 3 8 . . . . . . . 
+. . . . 1 1 . 1 . 1 1 . . . . . 
+. . . . 9 1 1 1 1 1 9 . . . . . 
+. . . . . 9 6 1 6 9 . . . . . . 
+. . . . . . . 1 . . . . . . . . 
+`
+        bee_images = [img`
+. . . . . . . . 
+. . f . f f . . 
+. f 1 f 1 1 f . 
+. . f f f f f . 
+. f f 2 f 2 2 f 
+f 2 2 f 2 f f . 
+. f f f f f . . 
+. . . . . . . . 
+`, img`
+. . . . . . . . 
+. . . . . . . . 
+. . . . . . . . 
+. . f f f f f . 
+. f f 2 f 2 2 f 
+f 2 2 f 2 f f . 
+. f f f f f . . 
+. . . . . . . . 
+`]
+    }
+}
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (cat.vy == 0) {
+        launch()
+    }
+})
+function launch () {
+    if (7 < charge) {
+        charge = 0
+        x_speed = 200
+        cat.vy = -190
+    } else {
+        cat.vy = -150
+    }
+}
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    if (sprite.bottom < otherSprite.bottom) {
+        info.changeScoreBy(2)
+    } else {
+        info.changeLifeBy(-1)
+    }
+    otherSprite.destroy()
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Trap, function (sprite, otherSprite) {
+    take_damage()
+})
+function stop () {
+    cat.vx = 0
+}
+function jump () {
+    cat.vy = -150
+}
+function go () {
+    cat.vx = 80
+}
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Flower, function (sprite, otherSprite) {
+    otherSprite.destroy()
+    bee = sprites.create(img`
+. . f . f f . . 
+. f 1 f 1 1 f . 
+. . . f f f . . 
+. . f 5 f 5 f . 
+. f 5 f 5 f 5 f 
+. f 5 f 5 5 5 f 
+. . f 5 f 5 f . 
+. . . f f f . . 
+`, SpriteKind.Enemy)
+    bee_x = scene.screenWidth() / 2 + sprite.x
+    bee_y = Math.max(0, sprite.y - scene.screenHeight() / 2)
+    bee.setPosition(bee_x, bee_y)
+    animation.runImageAnimation(
+    bee,
+    bee_images,
+    50,
+    true
+    )
+    bee.follow(cat)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Coin, function (sprite, otherSprite) {
+    animation.runMovementAnimation(
+    otherSprite,
+    animation.animationPresets(animation.easeUp),
+    1000,
+    false
+    )
+    info.changeScoreBy(1)
+    pause(500)
+    otherSprite.destroy()
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Terrain, function (sprite, otherSprite) {
+    x_diff = 0 - sprite.vx / 40
+    sprite.x += x_diff
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.spikes, function (sprite, otherSprite) {
+    cat.vy = -100
+    info.changeLifeBy(-1)
+})
+let x_diff = 0
+let bee_y = 0
+let bee_x = 0
+let bee: Sprite = null
+let x_speed = 0
+let charge = 0
+let bee_images: Image[] = []
+let spikes2: Sprite = null
+let squeeze_grass: Sprite = null
+let fireball: Sprite = null
+let flower_image: Image = null
+let bee_flower: Sprite = null
+let coin: Sprite = null
+let exit_portal: Sprite = null
+let biome = 0
+let current_level = 0
+let levels: Image[] = []
+let cat: Sprite = null
 cat = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -771,7 +1026,6 @@ f f f f f f f f f f f f f f . .
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `, SpriteKind.Player)
-game.showLongText("Pounce on bees. Avoid fire.", DialogLayout.Bottom)
 levels = [img`
 . . . . . . . . . . . . . . . . . 4 4 4 4 5 5 5 5 . . . . . . . 
 3 . . . . . . . . . . . . . . . . . . 7 7 7 7 7 7 . . . . . . . 
@@ -832,8 +1086,41 @@ levels = [img`
 . . . . . . 9 9 9 9 . . . . . . . . . . . . . 5 4 5 4 . . . . b 
 7 7 7 7 7 7 7 7 7 7 7 7 . . . . . . . . 7 7 7 7 7 7 7 7 7 7 7 d 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+`, img`
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . 4 . . . . . . . . . . . . . . . . . 
+. . . . . . 4 . . . . . . . . . . . . . 5 . . . . 4 . . . . . . 
+. . . . . . . . . . . 5 5 5 5 5 . . . a c . . . . . . 4 . . . . 
+. . . . . . . . . . . 7 7 7 7 c . . . . b . . . . . 5 . . 4 . . 
+. . . . . . . 5 . . . . . . . b . . . . b . . . . . 7 . . . . . 
+. . 4 . . . . 7 . . . . . . . b . . 4 . b . . . . . . . . . 4 . 
+. . . . . . . . . . . . . . . b . . . . b . . . . . . . . . 5 . 
+. . 5 . . . . . . . . . . . . b a . . . b . . . . . . . . . 7 . 
+. . c . . . . . . . . . . . . b . . . . d . . . . . . . . . . . 
+. . b . . . . . . . . . . . . b . . . . . . . . . . . . . . . . 
+. . b . . . . . . . . . . . . b . . . a . . . . . . . . . . . . 
+. . b . a . . . . . . . . . . b . . . . 5 . . . . . . . . . . . 
+. . b . . 5 5 5 5 5 5 . . . . b . 4 . . c . . . . . . . . . . . 
+. . b . . 7 7 7 7 7 c . . . . b . . . . b . . . . . . . . . . . 
+. . b . . . . . . . b . . . . d . . . . b . . . . . . . . . . . 
+7 7 d . . . . 2 . . b . . . . . . a . . b . . . . . . . . . . . 
+. . . . . 7 7 7 7 7 d . . . . . . . . . b . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . d . . . . . . . . . . . 
+. . . . . . . . . . . . . . 4 . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . 4 . . . . . 5 . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . 7 . . . . . . . . . . . . . . 
+. . . . . . . . . 5 . . . 5 . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . 7 . . . 7 . . . . . . . . . . . . . . . . . . 
+. 3 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . 5 . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. 7 7 7 7 7 . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 `]
-current_level = 1
+current_level = 0
 cat.ay = 350
 scene.cameraFollowSprite(cat)
 cat.setFlag(SpriteFlag.BounceOnWall, false)

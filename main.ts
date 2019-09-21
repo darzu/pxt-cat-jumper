@@ -2,8 +2,10 @@ namespace SpriteKind {
     export const Coin = SpriteKind.create()
     export const Flower = SpriteKind.create()
     export const Trap = SpriteKind.create()
+    export const Portal = SpriteKind.create()
+    export const Terrain = SpriteKind.create()
 }
-scene.onHitTile(SpriteKind.Player, 2, function (sprite) {
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Portal, function (sprite, otherSprite) {
     current_level += 1
     if (current_level == levels.length) {
         game.over(true)
@@ -17,10 +19,6 @@ function take_damage () {
     }
 }
 function start_level () {
-    if (current_level == 0) {
-        game.showLongText("Reach the portal.", DialogLayout.Bottom)
-        game.showLongText("Pounce on bees. Avoid fire.", DialogLayout.Bottom)
-    }
     scene.setTileMap(levels[current_level])
     scene.setTile(12, img`
 7 7 7 7 5 7 7 7 7 7 7 7 7 7 7 7 
@@ -95,23 +93,23 @@ c . . . c c c 3 c c c c . . . .
 . . . . . . . . . . . . . . . . 
 `, true)
     scene.setTile(2, img`
-. . . . . 5 5 5 . . . . . . . . 
-. . . . 5 3 3 5 5 . . . . . . . 
-. . . 5 3 3 3 3 5 5 . . . . . . 
-. . . 5 a a 3 3 3 5 5 . . . . . 
-. . 5 3 a a a a 3 3 5 . . . . . 
-. . 5 3 a 8 8 8 a 3 5 . . . . . 
-. 5 3 a a 8 f 8 a 3 5 . . . . . 
-. 5 3 a 8 f f 8 a 3 5 . . . . . 
-. 5 3 a 8 f f 8 a 3 5 . . . . . 
-. 5 5 a 8 8 f 8 a 3 5 . . . . . 
-. . 5 3 a 8 8 8 a 3 5 . . . . . 
-. . 5 3 a a 8 a 3 3 5 . . . . . 
-. . 5 5 3 a 8 a 3 3 5 . . . . . 
-. . . 5 5 3 a 3 3 5 . . . . . . 
-. . . . 5 3 3 3 5 5 . . . . . . 
-. . . . . 5 5 5 5 . . . . . . . 
-`, true)
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, false)
     scene.setTile(4, img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -166,6 +164,24 @@ c . . . c c c 3 c c c c . . . .
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `, false)
+    scene.setTile(9, img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, false)
     scene.setTile(3, img`
 . . . . . 5 5 5 . . . . . . . . 
 . . . . 5 3 3 5 5 . . . . . . . 
@@ -185,6 +201,44 @@ c . . . c c c 3 c c c c . . . .
 . . . . . 5 5 5 5 . . . . . . . 
 `, false)
     scene.placeOnRandomTile(cat, 3)
+    for (let value of sprites.allOfKind(SpriteKind.Trap)) {
+        value.destroy()
+    }
+    for (let value of sprites.allOfKind(SpriteKind.Coin)) {
+        value.destroy()
+    }
+    for (let value of sprites.allOfKind(SpriteKind.Flower)) {
+        value.destroy()
+    }
+    for (let value of sprites.allOfKind(SpriteKind.Terrain)) {
+        value.destroy()
+    }
+    for (let value of sprites.allOfKind(SpriteKind.Portal)) {
+        value.destroy()
+    }
+    if (current_level == 3) {
+        pause(100)
+        game.showLongText("\"B\" to crouch and leap", DialogLayout.Bottom)
+    }
+    exit_portal = sprites.create(img`
+. . . . . 5 5 5 . . . . . . . . 
+. . . . 5 3 3 5 5 . . . . . . . 
+. . . 5 3 3 3 3 5 5 . . . . . . 
+. . . 5 a a 3 3 3 5 5 . . . . . 
+. . 5 3 a a a a 3 3 5 . . . . . 
+. . 5 3 a 8 8 8 a 3 5 . . . . . 
+. 5 3 a a 8 f 8 a 3 5 . . . . . 
+. 5 3 a 8 f f 8 a 3 5 . . . . . 
+. 5 3 a 8 f f 8 a 3 5 . . . . . 
+. 5 5 a 8 8 f 8 a 3 5 . . . . . 
+. . 5 3 a 8 8 8 a 3 5 . . . . . 
+. . 5 3 a a 8 a 3 3 5 . . . . . 
+. . 5 5 3 a 8 a 3 3 5 . . . . . 
+. . . 5 5 3 a 3 3 5 . . . . . . 
+. . . . 5 3 3 3 5 5 . . . . . . 
+. . . . . 5 5 5 5 . . . . . . . 
+`, SpriteKind.Portal)
+    scene.placeOnRandomTile(exit_portal, 2)
     for (let value of scene.getTilesByType(4)) {
         coin = sprites.create(img`
 . . . . . . . . . . . . . . . . 
@@ -376,9 +430,6 @@ c . . . c c c 3 c c c c . . . .
 `, SpriteKind.Flower)
         value.place(bee_flower)
     }
-    for (let value of sprites.allOfKind(SpriteKind.Trap)) {
-        value.destroy()
-    }
     for (let value of scene.getTilesByType(10)) {
         fireball = sprites.create(img`
 . . . . . . . . 
@@ -393,11 +444,32 @@ c . . . c c c 3 c c c c . . . .
         value.place(fireball)
         animation.runMovementAnimation(
         fireball,
-        "c 0 -160 0 80 0 0",
+        "c 0 -100 0 100 0 0",
         2000,
         true
         )
         fireball.startEffect(effects.fire)
+    }
+    for (let value of scene.getTilesByType(9)) {
+        squeeze_grass = sprites.create(img`
+e e e e e e e e e e e e e e e e 
+e e e e e e e e e e e e e e e e 
+e e e e e e e e e b e e e e e e 
+e e e e e e e e e e e e e e e e 
+e e e e b e e e e e e e e b e e 
+e e e e e e e e e e 7 e e e e e 
+e e e e e e e b e e e e e e e e 
+e e 7 e e 7 e e e e e e e e 7 e 
+7 e e e e 7 e e e 7 e e e e e e 
+7 7 e 7 e 7 7 e 7 7 e 7 e e 7 7 
+7 7 7 7 7 7 7 7 7 5 7 7 7 7 7 7 
+7 5 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, SpriteKind.Terrain)
+        value.place(squeeze_grass)
     }
     info.setLife(3)
 }
@@ -408,9 +480,18 @@ scene.onHitTile(SpriteKind.Player, 0, function (sprite) {
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (cat.vy == 0) {
-        jump()
+        launch()
     }
 })
+function launch () {
+    if (7 < charge) {
+        charge = 0
+        x_speed = 200
+        cat.vy = -190
+    } else {
+        cat.vy = -150
+    }
+}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (sprite.bottom < otherSprite.bottom) {
         info.changeScoreBy(2)
@@ -483,12 +564,21 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Coin, function (sprite, otherSpr
     pause(500)
     otherSprite.destroy()
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Terrain, function (sprite, otherSprite) {
+    x_diff = 0 - sprite.vx / 40
+    sprite.x += x_diff
+})
+let x_diff = 0
 let bee_y = 0
 let bee_x = 0
 let bee: Sprite = null
+let x_speed = 0
+let charge = 0
+let squeeze_grass: Sprite = null
 let fireball: Sprite = null
 let bee_flower: Sprite = null
 let coin: Sprite = null
+let exit_portal: Sprite = null
 let current_level = 0
 let levels: Image[] = []
 let cat: Sprite = null
@@ -633,6 +723,7 @@ f f f f f f f f f f f f f f . .
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `, SpriteKind.Player)
+game.showLongText("Pounce on bees. Avoid fire.", DialogLayout.Bottom)
 levels = [img`
 . . . . . . . . . . . . . . . . . 4 4 4 4 5 5 5 5 . . . . . . . 
 3 . . . . . . . . . . . . . . . . . . 7 7 7 7 7 7 . . . . . . . 
@@ -684,13 +775,34 @@ levels = [img`
 3 . . 5 . . . . . . . . . . . . 
 7 7 7 7 7 7 . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
+`, img`
+. . . . . . b . . . . . . . . . . . . . . . . . . . . . . . . 2 
+3 . . . . . b . . . . . . . . . . . . . . . . . . . . . . . . c 
+. . . . . . b . . . . . . . . . . . . . . . . . . . . . . . . b 
+. . . . . . b 4 4 4 . . . . . . . . . . . . . . . . . . . . a b 
+. . . . . . b c c c . . . . . . . . . . . . . . . . . . . . . b 
+. . . . . . 9 9 9 9 . . . . . . . . . . . . . 5 4 5 4 . . . . b 
+7 7 7 7 7 7 7 7 7 7 7 7 . . . . . . . . 7 7 7 7 7 7 7 7 7 7 7 d 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 `]
-current_level = 0
+current_level = 2
 cat.ay = 350
-controller.moveSprite(cat, 80, 0)
 scene.cameraFollowSprite(cat)
 cat.setFlag(SpriteFlag.BounceOnWall, false)
 start_level()
+game.onUpdateInterval(100, function () {
+    x_speed += -20
+    if (controller.B.isPressed()) {
+        x_speed = Math.max(x_speed, 40)
+        if (cat.vy == 0) {
+            charge += 1
+        }
+    } else {
+        x_speed = Math.max(x_speed, 80)
+        charge = 0
+    }
+    controller.moveSprite(cat, x_speed, 0)
+})
 game.onUpdate(function () {
     if (cat.vy > 10) {
         cat.setImage(img`
@@ -731,8 +843,49 @@ f . . . f . f 1 1 . . . . . . .
 . . . . . f . . . . . . . . . . 
 `)
     } else {
-        if (cat.x % 2 == 0) {
-            cat.setImage(img`
+        if (controller.B.isPressed()) {
+            if (7 < charge) {
+                cat.setImage(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . f f f . . . . f f f f . 
+f f f f f f f f f f . . f f 5 f 
+. . . . f f f f f f f f f f f f 
+. . . . f f f f 1 1 f f f f f . 
+`)
+            } else {
+                cat.setImage(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+f . . . . . . . . . . . . . . . 
+f . . . . . . . . . . . . . . . 
+. f . . . . . . . . . . . . . . 
+. f f . . . . . . . . . . . . . 
+. . . f f f f . . . . f f f f . 
+. . . . f f f f f f . . f f 5 f 
+. . . . f f f f f f f f f f f f 
+. . . . f f f f 1 1 f f f f f . 
+`)
+            }
+        } else {
+            if (cat.x % 2 == 0) {
+                cat.setImage(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -750,8 +903,8 @@ f f f f f f f f f f f f f f . .
 . . . . f . f 1 1 1 f . f . . . 
 . . . . f . f . . . f . f . . . 
 `)
-        } else {
-            cat.setImage(img`
+            } else {
+                cat.setImage(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -769,12 +922,33 @@ f f f f f f f f f f f f f f . .
 . . . . . f f 1 1 1 1 f f . . . 
 . . . . . f f . . . . f f . . . 
 `)
+            }
         }
     }
     if ((cat.isHittingTile(CollisionDirection.Left) || cat.isHittingTile(CollisionDirection.Right)) && cat.vy >= 0) {
         cat.vy = 0
         cat.ay = 0
-        cat.setImage(img`
+        if (7 < charge) {
+            cat.setImage(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . f f . 
+. . . . . . . . . . . . f 5 f . 
+. . . . . . . . . . . . f f f . 
+. . . . . . . . . . . . f f f f 
+. . . . . . . . . . . . . f f f 
+. . . . . . . . . . . . . f f f 
+. . . . . . . . . . . . . f f . 
+. . . . . . . . . . . . . f f . 
+. . . . . . . . . . . . . f f f 
+. . . . . . . . . . . . f f f f 
+. . . . . . . . . . . . f f f f 
+. . . . . . . . . . . . f f f . 
+. . . . . . . . . . . . f f f f 
+`)
+        } else {
+            cat.setImage(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -792,6 +966,7 @@ f f f f f f f f f f f f f f . .
 . . . . . . . . . . . . f f f . 
 . . . . . . . . f f f f f . . . 
 `)
+        }
     } else {
         cat.ay = 350
     }

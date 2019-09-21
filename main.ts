@@ -4,6 +4,7 @@ namespace SpriteKind {
     export const Trap = SpriteKind.create()
     export const Portal = SpriteKind.create()
     export const Terrain = SpriteKind.create()
+    export const spikes = SpriteKind.create()
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Portal, function (sprite, otherSprite) {
     current_level += 1
@@ -200,6 +201,24 @@ c . . . c c c 3 c c c c . . . .
 . . . . 5 3 3 3 5 5 . . . . . . 
 . . . . . 5 5 5 5 . . . . . . . 
 `, false)
+    scene.setTile(6, img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, false)
     scene.placeOnRandomTile(cat, 3)
     for (let value of sprites.allOfKind(SpriteKind.Trap)) {
         value.destroy()
@@ -214,6 +233,9 @@ c . . . c c c 3 c c c c . . . .
         value.destroy()
     }
     for (let value of sprites.allOfKind(SpriteKind.Portal)) {
+        value.destroy()
+    }
+    for (let value of sprites.allOfKind(SpriteKind.spikes)) {
         value.destroy()
     }
     if (current_level == 3) {
@@ -423,7 +445,7 @@ c . . . c c c 3 c c c c . . . .
 . . . . . . . 5 . . . . . . . . 
 . . . . . . 2 2 2 . . . . . . . 
 . . . . . . 4 2 4 . . . . . . . 
-. . . . 7 7 . 7 . 7 7 . . . . . 
+. . . . 7 7 8 7 8 7 7 . . . . . 
 . . . . 6 7 7 7 7 7 6 . . . . . 
 . . . . . 6 6 7 6 6 . . . . . . 
 . . . . . . . 7 . . . . . . . . 
@@ -471,6 +493,27 @@ e e 7 e e 7 e e e e e e e e 7 e
 `, SpriteKind.Terrain)
         value.place(squeeze_grass)
     }
+    for (let value of scene.getTilesByType(6)) {
+        spikes = sprites.create(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . d . . . d . . . d . . . d . 
+. . d . . . d . . . d . . . d . 
+. d d 1 . d d 1 . d d 1 . d d 1 
+1 d d d 1 d d d 1 d d d 1 d d d 
+e e e e e e e e e e e e e e e e 
+e e e e e e e e e e e e e e e e 
+e e e e e e e e e e e e e e e e 
+e b e e e e e e e e e b e e e e 
+e e e e e e e e e e e e e e e e 
+e e e e e b e e e e e e e e e e 
+e e e e e e e e e e e e b e e e 
+e e e e e e e e e e e e e e e e 
+e e e e e e e e e e e e e e e e 
+`, SpriteKind.spikes)
+        value.place(spikes)
+    }
     info.setLife(3)
 }
 scene.onHitTile(SpriteKind.Player, 0, function (sprite) {
@@ -500,17 +543,17 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     }
     otherSprite.destroy()
 })
-function go () {
-    cat.vx = 80
-}
-function stop () {
-    cat.vx = 0
-}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Trap, function (sprite, otherSprite) {
     take_damage()
 })
+function stop () {
+    cat.vx = 0
+}
 function jump () {
     cat.vy = -150
+}
+function go () {
+    cat.vx = 80
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Flower, function (sprite, otherSprite) {
     otherSprite.destroy()
@@ -568,12 +611,17 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Terrain, function (sprite, other
     x_diff = 0 - sprite.vx / 40
     sprite.x += x_diff
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.spikes, function (sprite, otherSprite) {
+    cat.vy = -100
+    info.changeLifeBy(-1)
+})
 let x_diff = 0
 let bee_y = 0
 let bee_x = 0
 let bee: Sprite = null
 let x_speed = 0
 let charge = 0
+let spikes: Sprite = null
 let squeeze_grass: Sprite = null
 let fireball: Sprite = null
 let bee_flower: Sprite = null
@@ -739,9 +787,9 @@ levels = [img`
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 . . . . . . . 
-. . . . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . . . . . 2 . 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . 5 5 5 5 5 5 5 5 . . . . . . 5 5 5 5 5 5 5 . . . . . 2 . 
+7 7 7 7 7 7 7 7 7 7 7 c 6 6 6 6 6 6 c 7 7 7 7 7 7 7 7 7 7 7 7 7 
+. . . . . . . . . . . d d d d d d d d . . . . . . . . . . . . . 
 `, img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . c . . . 
@@ -785,7 +833,7 @@ levels = [img`
 7 7 7 7 7 7 7 7 7 7 7 7 . . . . . . . . 7 7 7 7 7 7 7 7 7 7 7 d 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 `]
-current_level = 2
+current_level = 1
 cat.ay = 350
 scene.cameraFollowSprite(cat)
 cat.setFlag(SpriteFlag.BounceOnWall, false)

@@ -26,6 +26,7 @@
     <variable type="" id="]u7UT+O.JfC5F_:INEh^">charge</variable>
     <variable type="" id="6)qyuE{ULIo}!yDlH|C1">squeeze grass</variable>
     <variable type="" id="Wnp.NZAFweWpI2$_}`pt">x diff</variable>
+    <variable type="" id="/p3K}%^{)KSZFI^h%Lj2">spikes</variable>
     <variable type="KIND_SpriteKind" id="Qnbt/|olWjyC(3hRR,DB">Player</variable>
     <variable type="KIND_SpriteKind" id="@k3$JTA*DyH}}uO4+uy@">Projectile</variable>
     <variable type="KIND_SpriteKind" id="vg^L.$IeUowV^_AX_ng:">Food</variable>
@@ -35,8 +36,9 @@
     <variable type="KIND_SpriteKind" id="4e=T,JOtF1:sc*f1BHdh">Trap</variable>
     <variable type="KIND_SpriteKind" id="-axbQ8Y%rYY]h7VDFO{{">Portal</variable>
     <variable type="KIND_SpriteKind" id=",DuAcV,wr~2oPNaZ{+RP">Terrain</variable>
+    <variable type="KIND_SpriteKind" id="cTT[mV83+J3?{One3S*r">spikes</variable>
   </variables>
-  <block type="spritesoverlap" x="-210" y="-130">
+  <block type="spritesoverlap" x="200" y="0">
     <value name="HANDLER_DRAG_PARAM_sprite">
       <shadow type="argument_reporter_custom">
         <mutation typename="Sprite"></mutation>
@@ -119,7 +121,7 @@
       </block>
     </statement>
   </block>
-  <block type="function_definition" x="1430" y="-30">
+  <block type="function_definition" x="1840" y="100">
     <mutation name="take damage" functionid="s`,lo^qyY`~LmN`gYJ1`"></mutation>
     <field name="function_title">function</field>
     <field name="function_name">take damage</field>
@@ -170,7 +172,7 @@
       </block>
     </statement>
   </block>
-  <block type="pxt-on-start" x="790" y="70">
+  <block type="pxt-on-start" x="1200" y="200">
     <statement name="HANDLER">
       <block type="gamesetbackgroundimage">
         <value name="img">
@@ -388,9 +390,9 @@ f f f f f f f f f f f f f f . .
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 . . . . . . . 
-. . . . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . . . . . 2 . 
-7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . 5 5 5 5 5 5 5 5 . . . . . . 5 5 5 5 5 5 5 . . . . . 2 . 
+7 7 7 7 7 7 7 7 7 7 7 c 6 6 6 6 6 6 c 7 7 7 7 7 7 7 7 7 7 7 7 7 
+. . . . . . . . . . . d d d d d d d d . . . . . . . . . . . . . 
 `
                                 </field>
                               </block>
@@ -462,7 +464,7 @@ f f f f f f f f f f f f f f . .
                             <field name="VAR" id="zzD1V]liN%T.qEk2-El." variabletype="">current level</field>
                             <value name="VALUE">
                               <shadow type="math_number">
-                                <field name="NUM">2</field>
+                                <field name="NUM">1</field>
                               </shadow>
                             </value>
                             <next>
@@ -524,7 +526,49 @@ f f f f f f f f f f f f f f . .
       </block>
     </statement>
   </block>
-  <block type="function_definition" x="1944" y="86">
+  <block type="screen_image_picker" disabled="true" x="3401" y="200">
+    <field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . f . . . 
+. . . . . . . . . . . . f f f . 
+. . . . . . . . . . . . f f 5 f 
+. . . . . f f f f f f f f f f f 
+f f f f f f f f f f f f f f . . 
+. . . . f f f f f f f f f . . . 
+. . . . f . f . . . f . f . . . 
+. . . . f . f . . . f . f . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+    </field>
+  </block>
+  <block type="screen_image_picker" disabled="true" x="3520" y="200">
+    <field name="img">img`
+. . . 1 1 1 1 . . . . . . . . . 
+. . . 1 3 3 1 . . 1 1 1 . . . . 
+. . . . . . 1 . 1 1 3 3 1 . . . 
+. . . . . . 1 1 1 . . . . . . . 
+. . . . . 1 c 1 c 1 . . . . . . 
+. . . . . 1 1 1 1 1 . . . . . . 
+. . . . . 1 c 1 c 1 . . . . . . 
+. . . . . . 1 c 1 . . . . . . . 
+. . . . . . . 1 . . . . . . . . 
+. . . . . . 1 1 1 . 1 1 . . . . 
+. . . . 1 1 1 1 1 1 1 . . . . . 
+. . . 1 1 . 1 1 1 . . . . . . . 
+. . . . . . 1 1 1 . . . . . . . 
+. . . . . 1 1 1 1 1 . . . . . . 
+. . . . . 1 . . . 1 . . . . . . 
+. . . . 1 1 . . . 1 1 . . . . . 
+`
+    </field>
+  </block>
+  <block type="function_definition" x="2590" y="250">
     <mutation name="start level" functionid="@;h]A)M*7a-.}$]GQ0~M"></mutation>
     <field name="function_title">function</field>
     <field name="function_name">start level</field>
@@ -553,6 +597,7 @@ f f f f f f f f f f f f f f . .
                 
                 
                 
+            
             </field>
           </shadow>
           <block type="lists_index_get">
@@ -738,6 +783,7 @@ c . . . c c c 3 c c c c . . . .
 . . . . 5 3 3 3 5 5 . . . . . . 
 . . . . . 5 5 5 5 . . . . . . . 
 `
+                                
                                 </field>
                               </shadow>
                               <block type="tile_image_picker">
@@ -934,6 +980,7 @@ c . . . c c c 3 c c c c . . . .
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `
+                                                    
                                                     </field>
                                                   </shadow>
                                                   <block type="tile_image_picker">
@@ -964,46 +1011,73 @@ c . . . c c c 3 c c c c . . . .
                                                   </shadow>
                                                 </value>
                                                 <next>
-                                                  <block type="gameplaceonrandomtile">
-                                                    <value name="sprite">
-                                                      <block type="variables_get">
-                                                        <field name="VAR" id="/_?aD7w=ZD4,f~eLeqRK" variabletype="">cat</field>
+                                                  <block type="gamesettile">
+                                                    <value name="index">
+                                                      <shadow type="colorindexpicker">
+                                                        <field name="index">6</field>
+                                                      </shadow>
+                                                    </value>
+                                                    <value name="img">
+                                                      <shadow type="tile_image_picker" id="-zu}U!t?w:JG(2yt~;5q">
+                                                        <field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . d . . . d . . . d . . . d . 
+. . d . . . d . . . d . . . d . 
+. d d 1 . d d 1 . d d 1 . d d 1 
+1 d d d 1 d d d 1 d d d 1 d d d 
+e e e e e e e e e e e e e e e e 
+e e e e e e e e e e e e e e e e 
+e e e e e e e e e e e e e e e e 
+e b e e e e e e e e e b e e e e 
+e e e e e e e e e e e e e e e e 
+e e e e e b e e e e e e e e e e 
+e e e e e e e e e e e e b e e e 
+e e e e e e e e e e e e e e e e 
+e e e e e e e e e e e e e e e e 
+`
+                                                        </field>
+                                                      </shadow>
+                                                      <block type="tile_image_picker">
+                                                        <field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+                                                        </field>
                                                       </block>
                                                     </value>
-                                                    <value name="color">
-                                                      <shadow type="colorindexpicker">
-                                                        <field name="index">3</field>
+                                                    <value name="wall">
+                                                      <shadow type="toggleOnOff">
+                                                        <field name="on">false</field>
                                                       </shadow>
                                                     </value>
                                                     <next>
-                                                      <block type="pxt_controls_for_of">
-                                                        <value name="VAR">
-                                                          <shadow type="variables_get_reporter">
-                                                            <field name="VAR" id="-c^vP7b|X)QK@_.^-i^," variabletype="">value</field>
-                                                          </shadow>
-                                                        </value>
-                                                        <value name="LIST">
-                                                          <shadow type="variables_get" id="LgUq$oKW~/~#+pPaAx_!">
-                                                            <field name="VAR" id="Qe]Ww2AW:6HD.%to?XKV" variabletype="">list</field>
-                                                          </shadow>
-                                                          <block type="allOfKind">
-                                                            <value name="kind">
-                                                              <shadow type="spritekind">
-                                                                <field name="MEMBER">Trap</field>
-                                                              </shadow>
-                                                            </value>
+                                                      <block type="gameplaceonrandomtile">
+                                                        <value name="sprite">
+                                                          <block type="variables_get">
+                                                            <field name="VAR" id="/_?aD7w=ZD4,f~eLeqRK" variabletype="">cat</field>
                                                           </block>
                                                         </value>
-                                                        <statement name="DO">
-                                                          <block type="spritedestroy">
-                                                            <mutation _expanded="0" _input_init="false"></mutation>
-                                                            <value name="sprite">
-                                                              <block type="variables_get">
-                                                                <field name="VAR" id="-c^vP7b|X)QK@_.^-i^," variabletype="">value</field>
-                                                              </block>
-                                                            </value>
-                                                          </block>
-                                                        </statement>
+                                                        <value name="color">
+                                                          <shadow type="colorindexpicker">
+                                                            <field name="index">3</field>
+                                                          </shadow>
+                                                        </value>
                                                         <next>
                                                           <block type="pxt_controls_for_of">
                                                             <value name="VAR">
@@ -1018,7 +1092,7 @@ c . . . c c c 3 c c c c . . . .
                                                               <block type="allOfKind">
                                                                 <value name="kind">
                                                                   <shadow type="spritekind">
-                                                                    <field name="MEMBER">Coin</field>
+                                                                    <field name="MEMBER">Trap</field>
                                                                   </shadow>
                                                                 </value>
                                                               </block>
@@ -1047,7 +1121,7 @@ c . . . c c c 3 c c c c . . . .
                                                                   <block type="allOfKind">
                                                                     <value name="kind">
                                                                       <shadow type="spritekind">
-                                                                        <field name="MEMBER">Flower</field>
+                                                                        <field name="MEMBER">Coin</field>
                                                                       </shadow>
                                                                     </value>
                                                                   </block>
@@ -1076,7 +1150,7 @@ c . . . c c c 3 c c c c . . . .
                                                                       <block type="allOfKind">
                                                                         <value name="kind">
                                                                           <shadow type="spritekind">
-                                                                            <field name="MEMBER">Terrain</field>
+                                                                            <field name="MEMBER">Flower</field>
                                                                           </shadow>
                                                                         </value>
                                                                       </block>
@@ -1105,7 +1179,7 @@ c . . . c c c 3 c c c c . . . .
                                                                           <block type="allOfKind">
                                                                             <value name="kind">
                                                                               <shadow type="spritekind">
-                                                                                <field name="MEMBER">Portal</field>
+                                                                                <field name="MEMBER">Terrain</field>
                                                                               </shadow>
                                                                             </value>
                                                                           </block>
@@ -1121,58 +1195,116 @@ c . . . c c c 3 c c c c . . . .
                                                                           </block>
                                                                         </statement>
                                                                         <next>
-                                                                          <block type="controls_if">
-                                                                            <value name="IF0">
-                                                                              <shadow type="logic_boolean" id="o?y!gs~jYcVA3Ng`8|lH">
-                                                                                <field name="BOOL">TRUE</field>
+                                                                          <block type="pxt_controls_for_of">
+                                                                            <value name="VAR">
+                                                                              <shadow type="variables_get_reporter">
+                                                                                <field name="VAR" id="-c^vP7b|X)QK@_.^-i^," variabletype="">value</field>
                                                                               </shadow>
-                                                                              <block type="logic_compare">
-                                                                                <field name="OP">EQ</field>
-                                                                                <value name="A">
-                                                                                  <shadow type="math_number" id="PZTLDmc~3/01XxXHopPB">
-                                                                                    <field name="NUM">0</field>
-                                                                                  </shadow>
-                                                                                  <block type="variables_get">
-                                                                                    <field name="VAR" id="zzD1V]liN%T.qEk2-El." variabletype="">current level</field>
-                                                                                  </block>
-                                                                                </value>
-                                                                                <value name="B">
-                                                                                  <shadow type="math_number">
-                                                                                    <field name="NUM">3</field>
+                                                                            </value>
+                                                                            <value name="LIST">
+                                                                              <shadow type="variables_get" id="LgUq$oKW~/~#+pPaAx_!">
+                                                                                <field name="VAR" id="Qe]Ww2AW:6HD.%to?XKV" variabletype="">list</field>
+                                                                              </shadow>
+                                                                              <block type="allOfKind">
+                                                                                <value name="kind">
+                                                                                  <shadow type="spritekind">
+                                                                                    <field name="MEMBER">Portal</field>
                                                                                   </shadow>
                                                                                 </value>
                                                                               </block>
                                                                             </value>
-                                                                            <statement name="DO0">
-                                                                              <block type="device_pause">
-                                                                                <value name="pause">
-                                                                                  <shadow type="timePicker">
-                                                                                    <field name="ms">100</field>
-                                                                                  </shadow>
-                                                                                </value>
-                                                                                <next>
-                                                                                  <block type="game_show_long_text">
-                                                                                    <field name="layout">DialogLayout.Bottom</field>
-                                                                                    <value name="str">
-                                                                                      <shadow type="text">
-                                                                                        <field name="TEXT">"B" to crouch and leap</field>
-                                                                                      </shadow>
-                                                                                    </value>
+                                                                            <statement name="DO">
+                                                                              <block type="spritedestroy">
+                                                                                <mutation _expanded="0" _input_init="false"></mutation>
+                                                                                <value name="sprite">
+                                                                                  <block type="variables_get">
+                                                                                    <field name="VAR" id="-c^vP7b|X)QK@_.^-i^," variabletype="">value</field>
                                                                                   </block>
-                                                                                </next>
+                                                                                </value>
                                                                               </block>
                                                                             </statement>
                                                                             <next>
-                                                                              <block type="variables_set">
-                                                                                <field name="VAR" id="Q6fFha;NgNw?p}QO,X@j" variabletype="">exit portal</field>
-                                                                                <value name="VALUE">
-                                                                                  <shadow type="math_number">
-                                                                                    <field name="NUM">0</field>
+                                                                              <block type="pxt_controls_for_of">
+                                                                                <value name="VAR">
+                                                                                  <shadow type="variables_get_reporter">
+                                                                                    <field name="VAR" id="-c^vP7b|X)QK@_.^-i^," variabletype="">value</field>
                                                                                   </shadow>
-                                                                                  <block type="spritescreate">
-                                                                                    <value name="img">
-                                                                                      <shadow type="screen_image_picker" id="X[RaS%dH?L.rwU|.#OC|">
-                                                                                        <field name="img">img`
+                                                                                </value>
+                                                                                <value name="LIST">
+                                                                                  <shadow type="variables_get" id="LgUq$oKW~/~#+pPaAx_!">
+                                                                                    <field name="VAR" id="Qe]Ww2AW:6HD.%to?XKV" variabletype="">list</field>
+                                                                                  </shadow>
+                                                                                  <block type="allOfKind">
+                                                                                    <value name="kind">
+                                                                                      <shadow type="spritekind">
+                                                                                        <field name="MEMBER">spikes</field>
+                                                                                      </shadow>
+                                                                                    </value>
+                                                                                  </block>
+                                                                                </value>
+                                                                                <statement name="DO">
+                                                                                  <block type="spritedestroy">
+                                                                                    <mutation _expanded="0" _input_init="false"></mutation>
+                                                                                    <value name="sprite">
+                                                                                      <block type="variables_get">
+                                                                                        <field name="VAR" id="-c^vP7b|X)QK@_.^-i^," variabletype="">value</field>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                  </block>
+                                                                                </statement>
+                                                                                <next>
+                                                                                  <block type="controls_if">
+                                                                                    <value name="IF0">
+                                                                                      <shadow type="logic_boolean" id="o?y!gs~jYcVA3Ng`8|lH">
+                                                                                        <field name="BOOL">TRUE</field>
+                                                                                      </shadow>
+                                                                                      <block type="logic_compare">
+                                                                                        <field name="OP">EQ</field>
+                                                                                        <value name="A">
+                                                                                          <shadow type="math_number" id="PZTLDmc~3/01XxXHopPB">
+                                                                                            <field name="NUM">0</field>
+                                                                                          </shadow>
+                                                                                          <block type="variables_get">
+                                                                                            <field name="VAR" id="zzD1V]liN%T.qEk2-El." variabletype="">current level</field>
+                                                                                          </block>
+                                                                                        </value>
+                                                                                        <value name="B">
+                                                                                          <shadow type="math_number">
+                                                                                            <field name="NUM">3</field>
+                                                                                          </shadow>
+                                                                                        </value>
+                                                                                      </block>
+                                                                                    </value>
+                                                                                    <statement name="DO0">
+                                                                                      <block type="device_pause">
+                                                                                        <value name="pause">
+                                                                                          <shadow type="timePicker">
+                                                                                            <field name="ms">100</field>
+                                                                                          </shadow>
+                                                                                        </value>
+                                                                                        <next>
+                                                                                          <block type="game_show_long_text">
+                                                                                            <field name="layout">DialogLayout.Bottom</field>
+                                                                                            <value name="str">
+                                                                                              <shadow type="text">
+                                                                                                <field name="TEXT">"B" to crouch and leap</field>
+                                                                                              </shadow>
+                                                                                            </value>
+                                                                                          </block>
+                                                                                        </next>
+                                                                                      </block>
+                                                                                    </statement>
+                                                                                    <next>
+                                                                                      <block type="variables_set">
+                                                                                        <field name="VAR" id="Q6fFha;NgNw?p}QO,X@j" variabletype="">exit portal</field>
+                                                                                        <value name="VALUE">
+                                                                                          <shadow type="math_number">
+                                                                                            <field name="NUM">0</field>
+                                                                                          </shadow>
+                                                                                          <block type="spritescreate">
+                                                                                            <value name="img">
+                                                                                              <shadow type="screen_image_picker" id="X[RaS%dH?L.rwU|.#OC|">
+                                                                                                <field name="img">img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -1190,10 +1322,11 @@ c . . . c c c 3 c c c c . . . .
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `
-                                                                                        </field>
-                                                                                      </shadow>
-                                                                                      <block type="tile_image_picker">
-                                                                                        <field name="img">img`
+                                                                                        
+                                                                                                </field>
+                                                                                              </shadow>
+                                                                                              <block type="tile_image_picker">
+                                                                                                <field name="img">img`
 . . . . . 5 5 5 . . . . . . . . 
 . . . . 5 3 3 5 5 . . . . . . . 
 . . . 5 3 3 3 3 5 5 . . . . . . 
@@ -1211,727 +1344,28 @@ c . . . c c c 3 c c c c . . . .
 . . . . 5 3 3 3 5 5 . . . . . . 
 . . . . . 5 5 5 5 . . . . . . . 
 `
-                                                                                        </field>
-                                                                                      </block>
-                                                                                    </value>
-                                                                                    <value name="kind">
-                                                                                      <shadow type="spritekind">
-                                                                                        <field name="MEMBER">Portal</field>
-                                                                                      </shadow>
-                                                                                    </value>
-                                                                                  </block>
-                                                                                </value>
-                                                                                <next>
-                                                                                  <block type="gameplaceonrandomtile">
-                                                                                    <value name="sprite">
-                                                                                      <block type="variables_get">
-                                                                                        <field name="VAR" id="Q6fFha;NgNw?p}QO,X@j" variabletype="">exit portal</field>
-                                                                                      </block>
-                                                                                    </value>
-                                                                                    <value name="color">
-                                                                                      <shadow type="colorindexpicker">
-                                                                                        <field name="index">2</field>
-                                                                                      </shadow>
-                                                                                    </value>
-                                                                                    <next>
-                                                                                      <block type="pxt_controls_for_of">
-                                                                                        <value name="VAR">
-                                                                                          <shadow type="variables_get_reporter">
-                                                                                            <field name="VAR" id="-c^vP7b|X)QK@_.^-i^," variabletype="">value</field>
-                                                                                          </shadow>
-                                                                                        </value>
-                                                                                        <value name="LIST">
-                                                                                          <shadow type="variables_get" id="r/jgbHCMpXer4WGo+NAP">
-                                                                                            <field name="VAR" id="Qe]Ww2AW:6HD.%to?XKV" variabletype="">list</field>
-                                                                                          </shadow>
-                                                                                          <block type="gamegettilestype">
-                                                                                            <value name="index">
-                                                                                              <shadow type="colorindexpicker">
-                                                                                                <field name="index">4</field>
+                                                                                                </field>
+                                                                                              </block>
+                                                                                            </value>
+                                                                                            <value name="kind">
+                                                                                              <shadow type="spritekind">
+                                                                                                <field name="MEMBER">Portal</field>
                                                                                               </shadow>
                                                                                             </value>
                                                                                           </block>
                                                                                         </value>
-                                                                                        <statement name="DO">
-                                                                                          <block type="variables_set">
-                                                                                            <field name="VAR" id="pJD!)Q9u32L[_fW3wffa" variabletype="">coin</field>
-                                                                                            <value name="VALUE">
-                                                                                              <shadow type="math_number">
-                                                                                                <field name="NUM">0</field>
-                                                                                              </shadow>
-                                                                                              <block type="spritescreate">
-                                                                                                <value name="img">
-                                                                                                  <shadow type="screen_image_picker">
-                                                                                                    <field name="img">img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . f f f f . . . . . . 
-. . . . . f 5 5 5 5 f . . . . . 
-. . . . f 5 4 4 4 4 5 f . . . . 
-. . . f 5 4 5 5 5 5 5 5 f . . . 
-. . . f 5 4 5 5 5 5 5 5 f . . . 
-. . . f 5 4 5 5 5 5 5 4 f . . . 
-. . . f 5 4 5 5 5 5 5 4 f . . . 
-. . . . f 5 5 5 5 5 4 f . . . . 
-. . . . . f 5 5 4 4 f . . . . . 
-. . . . . . f f f f . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`
-                                                                                                    </field>
-                                                                                                  </shadow>
-                                                                                                </value>
-                                                                                                <value name="kind">
-                                                                                                  <shadow type="spritekind">
-                                                                                                    <field name="MEMBER">Coin</field>
-                                                                                                  </shadow>
-                                                                                                </value>
-                                                                                              </block>
-                                                                                            </value>
-                                                                                            <next>
-                                                                                              <block type="gameplaceontile">
-                                                                                                <value name="tile">
-                                                                                                  <block type="variables_get">
-                                                                                                    <field name="VAR" id="-c^vP7b|X)QK@_.^-i^," variabletype="">value</field>
-                                                                                                  </block>
-                                                                                                </value>
-                                                                                                <value name="sprite">
-                                                                                                  <block type="variables_get">
-                                                                                                    <field name="VAR" id="pJD!)Q9u32L[_fW3wffa" variabletype="">coin</field>
-                                                                                                  </block>
-                                                                                                </value>
-                                                                                                <next>
-                                                                                                  <block type="Sprite_blockCombine_change">
-                                                                                                    <field name="property">Sprite.y@set</field>
-                                                                                                    <value name="mySprite">
-                                                                                                      <block type="variables_get">
-                                                                                                        <field name="VAR" id="pJD!)Q9u32L[_fW3wffa" variabletype="">coin</field>
-                                                                                                      </block>
-                                                                                                    </value>
-                                                                                                    <value name="value">
-                                                                                                      <shadow type="math_number">
-                                                                                                        <field name="NUM">-5</field>
-                                                                                                      </shadow>
-                                                                                                    </value>
-                                                                                                    <next>
-                                                                                                      <block type="run_image_animation">
-                                                                                                        <value name="sprite">
-                                                                                                          <block type="variables_get">
-                                                                                                            <field name="VAR" id="pJD!)Q9u32L[_fW3wffa" variabletype="">coin</field>
-                                                                                                          </block>
-                                                                                                        </value>
-                                                                                                        <value name="frames">
-                                                                                                          <block type="lists_create_with" inline="false">
-                                                                                                            <mutation items="8"></mutation>
-                                                                                                            <value name="ADD0">
-                                                                                                              <shadow type="screen_image_picker" id="6CAA8cyRhNq]{1Bpg[Dp">
-                                                                                                                <field name="img">img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`
-                    
-                    
-                            
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                                    
-                                                                            
-                                                                            
-                                                                            
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                                                </field>
-                                                                                                              </shadow>
-                                                                                                              <block type="screen_image_picker">
-                                                                                                                <field name="img">img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . f f f f . . . . . . 
-. . . . . f 5 5 5 5 f . . . . . 
-. . . . f 5 4 4 4 4 5 f . . . . 
-. . . f 5 4 5 5 5 5 5 5 f . . . 
-. . . f 5 4 5 5 5 5 5 5 f . . . 
-. . . f 5 4 5 5 5 5 5 4 f . . . 
-. . . f 5 4 5 5 5 5 5 4 f . . . 
-. . . . f 5 5 5 5 5 4 f . . . . 
-. . . . . f 5 5 4 4 f . . . . . 
-. . . . . . f f f f . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`
-                                                                                                                </field>
-                                                                                                              </block>
-                                                                                                            </value>
-                                                                                                            <value name="ADD1">
-                                                                                                              <shadow type="screen_image_picker" id="m^I_AO.WXW%`L4c%c~Ph">
-                                                                                                                <field name="img">img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`
-                    
-                    
-                            
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                                    
-                                                                            
-                                                                            
-                                                                            
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                                                </field>
-                                                                                                              </shadow>
-                                                                                                              <block type="screen_image_picker">
-                                                                                                                <field name="img">img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . f f f f . . . . . . 
-. . . . . f 5 5 5 5 f . . . . . 
-. . . . f 5 5 4 4 5 5 f . . . . 
-. . . . f 5 4 5 5 5 5 f . . . . 
-. . . . f 5 4 5 5 5 5 f . . . . 
-. . . . f 5 4 5 5 5 4 f . . . . 
-. . . . f 5 4 5 5 5 4 f . . . . 
-. . . . f 5 4 5 5 5 4 f . . . . 
-. . . . . f 5 5 4 4 f . . . . . 
-. . . . . . f f f f . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`
-                                                                                                                </field>
-                                                                                                              </block>
-                                                                                                            </value>
-                                                                                                            <value name="ADD2">
-                                                                                                              <shadow type="screen_image_picker" id="b?O;k+tM5QtzWfkd)3t~">
-                                                                                                                <field name="img">img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`
-                                                                    
-                                                                    
-                                                                                    
-                                                                            
-                                                                            
-                                                                            
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                                                </field>
-                                                                                                              </shadow>
-                                                                                                              <block type="screen_image_picker">
-                                                                                                                <field name="img">img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . f f . . . . . . . 
-. . . . . . f 5 5 f . . . . . . 
-. . . . . f 5 4 5 5 f . . . . . 
-. . . . . f 5 4 5 5 f . . . . . 
-. . . . . f 5 4 5 5 f . . . . . 
-. . . . . f 5 4 5 4 f . . . . . 
-. . . . . f 5 4 5 4 f . . . . . 
-. . . . . f 5 5 5 4 f . . . . . 
-. . . . . . f 5 4 f . . . . . . 
-. . . . . . . f f . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`
-                                                                                                                </field>
-                                                                                                              </block>
-                                                                                                            </value>
-                                                                                                            <value name="ADD3">
-                                                                                                              <shadow type="screen_image_picker" id="(I3$D}ld?Id)xW]%J!1o">
-                                                                                                                <field name="img">img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`
-                    
-                    
-                            
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                                    
-                                                                            
-                                                                            
-                                                                            
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                                                </field>
-                                                                                                              </shadow>
-                                                                                                              <block type="screen_image_picker">
-                                                                                                                <field name="img">img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . f f . . . . . . . 
-. . . . . . f 5 5 f . . . . . . 
-. . . . . . f 4 5 f . . . . . . 
-. . . . . . f 4 5 f . . . . . . 
-. . . . . . f 4 5 f . . . . . . 
-. . . . . . f 4 5 f . . . . . . 
-. . . . . . f 4 5 f . . . . . . 
-. . . . . . f 5 5 f . . . . . . 
-. . . . . . f 5 4 f . . . . . . 
-. . . . . . . f f . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`
-                                                                                                                </field>
-                                                                                                              </block>
-                                                                                                            </value>
-                                                                                                            <value name="ADD4">
-                                                                                                              <shadow type="screen_image_picker" id="X-,AcpW*vqm~oU44OwM8">
-                                                                                                                <field name="img">img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`
-                    
-                    
-                            
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                    
-                                                                                    
-                                                                            
-                                                                            
-                                                                            
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                                                </field>
-                                                                                                              </shadow>
-                                                                                                              <block type="screen_image_picker">
-                                                                                                                <field name="img">img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . f f . . . . . . . 
-. . . . . . . f f . . . . . . . 
-. . . . . . . f f . . . . . . . 
-. . . . . . . f f . . . . . . . 
-. . . . . . . f f . . . . . . . 
-. . . . . . . f f . . . . . . . 
-. . . . . . . f f . . . . . . . 
-. . . . . . . f f . . . . . . . 
-. . . . . . . f f . . . . . . . 
-. . . . . . . f f . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`
-                                                                                                                </field>
-                                                                                                              </block>
-                                                                                                            </value>
-                                                                                                            <value name="ADD5">
-                                                                                                              <shadow type="screen_image_picker" id="QgRQ#FS9TbHe^eo^)gjr">
-                                                                                                                <field name="img">img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`
-                                                                                    
-                                                                            
-                                                                            
-                                                                            
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                                                </field>
-                                                                                                              </shadow>
-                                                                                                              <block type="screen_image_picker">
-                                                                                                                <field name="img">img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . f f . . . . . . . 
-. . . . . . f 5 5 f . . . . . . 
-. . . . . . f 4 5 f . . . . . . 
-. . . . . . f 4 5 f . . . . . . 
-. . . . . . f 4 5 f . . . . . . 
-. . . . . . f 4 5 f . . . . . . 
-. . . . . . f 4 5 f . . . . . . 
-. . . . . . f 5 5 f . . . . . . 
-. . . . . . f 5 4 f . . . . . . 
-. . . . . . . f f . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`
-                                                                                                                </field>
-                                                                                                              </block>
-                                                                                                            </value>
-                                                                                                            <value name="ADD6">
-                                                                                                              <shadow type="screen_image_picker" id="|:xya6TcqPr_a/3N3S{|">
-                                                                                                                <field name="img">img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`
-                                                                    
-                                                                    
-                                                                                    
-                                                                            
-                                                                            
-                                                                            
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                                                </field>
-                                                                                                              </shadow>
-                                                                                                              <block type="screen_image_picker">
-                                                                                                                <field name="img">img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . f f . . . . . . . 
-. . . . . . f 5 5 f . . . . . . 
-. . . . . f 5 4 5 5 f . . . . . 
-. . . . . f 5 4 5 5 f . . . . . 
-. . . . . f 5 4 5 5 f . . . . . 
-. . . . . f 5 4 5 4 f . . . . . 
-. . . . . f 5 4 5 4 f . . . . . 
-. . . . . f 5 5 5 4 f . . . . . 
-. . . . . . f 5 4 f . . . . . . 
-. . . . . . . f f . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`
-                                                                                                                </field>
-                                                                                                              </block>
-                                                                                                            </value>
-                                                                                                            <value name="ADD7">
-                                                                                                              <shadow type="screen_image_picker" id="q-m_mAq4otct7G[#XD1z">
-                                                                                                                <field name="img">img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`
-                                                                    
-                                                                    
-                                                                                    
-                                                                            
-                                                                            
-                                                                            
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                
-                                                                                                                </field>
-                                                                                                              </shadow>
-                                                                                                              <block type="screen_image_picker">
-                                                                                                                <field name="img">img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . f f f f . . . . . . 
-. . . . . f 5 5 5 5 f . . . . . 
-. . . . f 5 5 4 4 5 5 f . . . . 
-. . . . f 5 4 5 5 5 5 f . . . . 
-. . . . f 5 4 5 5 5 5 f . . . . 
-. . . . f 5 4 5 5 5 4 f . . . . 
-. . . . f 5 4 5 5 5 4 f . . . . 
-. . . . f 5 4 5 5 5 4 f . . . . 
-. . . . . f 5 5 4 4 f . . . . . 
-. . . . . . f f f f . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`
-                                                                                                                </field>
-                                                                                                              </block>
-                                                                                                            </value>
-                                                                                                          </block>
-                                                                                                        </value>
-                                                                                                        <value name="frameInterval">
-                                                                                                          <shadow type="timePicker">
-                                                                                                            <field name="ms">100</field>
-                                                                                                          </shadow>
-                                                                                                        </value>
-                                                                                                        <value name="loop">
-                                                                                                          <shadow type="toggleOnOff">
-                                                                                                            <field name="on">true</field>
-                                                                                                          </shadow>
-                                                                                                        </value>
-                                                                                                        <next>
-                                                                                                          <block type="run_movement_animation">
-                                                                                                            <value name="sprite">
-                                                                                                              <block type="variables_get">
-                                                                                                                <field name="VAR" id="pJD!)Q9u32L[_fW3wffa" variabletype="">coin</field>
-                                                                                                              </block>
-                                                                                                            </value>
-                                                                                                            <value name="pathString">
-                                                                                                              <shadow type="animation_path">
-                                                                                                                <field name="animationPath">animation.bobbing</field>
-                                                                                                              </shadow>
-                                                                                                            </value>
-                                                                                                            <value name="duration">
-                                                                                                              <shadow type="timePicker">
-                                                                                                                <field name="ms">2000</field>
-                                                                                                              </shadow>
-                                                                                                            </value>
-                                                                                                            <value name="loop">
-                                                                                                              <shadow type="toggleOnOff">
-                                                                                                                <field name="on">true</field>
-                                                                                                              </shadow>
-                                                                                                            </value>
-                                                                                                          </block>
-                                                                                                        </next>
-                                                                                                      </block>
-                                                                                                    </next>
-                                                                                                  </block>
-                                                                                                </next>
-                                                                                              </block>
-                                                                                            </next>
-                                                                                          </block>
-                                                                                        </statement>
                                                                                         <next>
-                                                                                          <block type="pxt_controls_for_of">
-                                                                                            <value name="VAR">
-                                                                                              <shadow type="variables_get_reporter">
-                                                                                                <field name="VAR" id="-c^vP7b|X)QK@_.^-i^," variabletype="">value</field>
-                                                                                              </shadow>
-                                                                                            </value>
-                                                                                            <value name="LIST">
-                                                                                              <shadow type="variables_get" id="r/jgbHCMpXer4WGo+NAP">
-                                                                                                <field name="VAR" id="Qe]Ww2AW:6HD.%to?XKV" variabletype="">list</field>
-                                                                                              </shadow>
-                                                                                              <block type="gamegettilestype">
-                                                                                                <value name="index">
-                                                                                                  <shadow type="colorindexpicker">
-                                                                                                    <field name="index">5</field>
-                                                                                                  </shadow>
-                                                                                                </value>
+                                                                                          <block type="gameplaceonrandomtile">
+                                                                                            <value name="sprite">
+                                                                                              <block type="variables_get">
+                                                                                                <field name="VAR" id="Q6fFha;NgNw?p}QO,X@j" variabletype="">exit portal</field>
                                                                                               </block>
                                                                                             </value>
-                                                                                            <statement name="DO">
-                                                                                              <block type="variables_set">
-                                                                                                <field name="VAR" id="0``;I|`|gBY~o}$dOU{_" variabletype="">bee_flower</field>
-                                                                                                <value name="VALUE">
-                                                                                                  <shadow type="math_number">
-                                                                                                    <field name="NUM">0</field>
-                                                                                                  </shadow>
-                                                                                                  <block type="spritescreate">
-                                                                                                    <value name="img">
-                                                                                                      <shadow type="screen_image_picker">
-                                                                                                        <field name="img">img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . 5 . . . . . . . . 
-. . . . . . 2 2 2 . . . . . . . 
-. . . . . . 4 2 4 . . . . . . . 
-. . . . 7 7 . 7 . 7 7 . . . . . 
-. . . . 6 7 7 7 7 7 6 . . . . . 
-. . . . . 6 6 7 6 6 . . . . . . 
-. . . . . . . 7 . . . . . . . . 
-`
-                                                                                                        </field>
-                                                                                                      </shadow>
-                                                                                                    </value>
-                                                                                                    <value name="kind">
-                                                                                                      <shadow type="spritekind">
-                                                                                                        <field name="MEMBER">Flower</field>
-                                                                                                      </shadow>
-                                                                                                    </value>
-                                                                                                  </block>
-                                                                                                </value>
-                                                                                                <next>
-                                                                                                  <block type="gameplaceontile">
-                                                                                                    <value name="tile">
-                                                                                                      <block type="variables_get">
-                                                                                                        <field name="VAR" id="-c^vP7b|X)QK@_.^-i^," variabletype="">value</field>
-                                                                                                      </block>
-                                                                                                    </value>
-                                                                                                    <value name="sprite">
-                                                                                                      <block type="variables_get">
-                                                                                                        <field name="VAR" id="0``;I|`|gBY~o}$dOU{_" variabletype="">bee_flower</field>
-                                                                                                      </block>
-                                                                                                    </value>
-                                                                                                  </block>
-                                                                                                </next>
-                                                                                              </block>
-                                                                                            </statement>
+                                                                                            <value name="color">
+                                                                                              <shadow type="colorindexpicker">
+                                                                                                <field name="index">2</field>
+                                                                                              </shadow>
+                                                                                            </value>
                                                                                             <next>
                                                                                               <block type="pxt_controls_for_of">
                                                                                                 <value name="VAR">
@@ -1946,14 +1380,14 @@ c . . . c c c 3 c c c c . . . .
                                                                                                   <block type="gamegettilestype">
                                                                                                     <value name="index">
                                                                                                       <shadow type="colorindexpicker">
-                                                                                                        <field name="index">10</field>
+                                                                                                        <field name="index">4</field>
                                                                                                       </shadow>
                                                                                                     </value>
                                                                                                   </block>
                                                                                                 </value>
                                                                                                 <statement name="DO">
                                                                                                   <block type="variables_set">
-                                                                                                    <field name="VAR" id="2i.h5_9+l*jozyY^3%Wi" variabletype="">fireball</field>
+                                                                                                    <field name="VAR" id="pJD!)Q9u32L[_fW3wffa" variabletype="">coin</field>
                                                                                                     <value name="VALUE">
                                                                                                       <shadow type="math_number">
                                                                                                         <field name="NUM">0</field>
@@ -1962,21 +1396,29 @@ c . . . c c c 3 c c c c . . . .
                                                                                                         <value name="img">
                                                                                                           <shadow type="screen_image_picker">
                                                                                                             <field name="img">img`
-. . . . . . . . 
-. . . . . . . . 
-. . 2 4 4 . . . 
-. 2 4 4 4 2 . . 
-. 2 2 4 4 4 . . 
-. 2 2 2 4 2 . . 
-. . 2 2 2 . . . 
-. . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . f f f f . . . . . . 
+. . . . . f 5 5 5 5 f . . . . . 
+. . . . f 5 4 4 4 4 5 f . . . . 
+. . . f 5 4 5 5 5 5 5 5 f . . . 
+. . . f 5 4 5 5 5 5 5 5 f . . . 
+. . . f 5 4 5 5 5 5 5 4 f . . . 
+. . . f 5 4 5 5 5 5 5 4 f . . . 
+. . . . f 5 5 5 5 5 4 f . . . . 
+. . . . . f 5 5 4 4 f . . . . . 
+. . . . . . f f f f . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
 `
                                                                                                             </field>
                                                                                                           </shadow>
                                                                                                         </value>
                                                                                                         <value name="kind">
                                                                                                           <shadow type="spritekind">
-                                                                                                            <field name="MEMBER">Trap</field>
+                                                                                                            <field name="MEMBER">Coin</field>
                                                                                                           </shadow>
                                                                                                         </value>
                                                                                                       </block>
@@ -1990,48 +1432,566 @@ c . . . c c c 3 c c c c . . . .
                                                                                                         </value>
                                                                                                         <value name="sprite">
                                                                                                           <block type="variables_get">
-                                                                                                            <field name="VAR" id="2i.h5_9+l*jozyY^3%Wi" variabletype="">fireball</field>
+                                                                                                            <field name="VAR" id="pJD!)Q9u32L[_fW3wffa" variabletype="">coin</field>
                                                                                                           </block>
                                                                                                         </value>
                                                                                                         <next>
-                                                                                                          <block type="run_movement_animation">
-                                                                                                            <value name="sprite">
+                                                                                                          <block type="Sprite_blockCombine_change">
+                                                                                                            <field name="property">Sprite.y@set</field>
+                                                                                                            <value name="mySprite">
                                                                                                               <block type="variables_get">
-                                                                                                                <field name="VAR" id="2i.h5_9+l*jozyY^3%Wi" variabletype="">fireball</field>
+                                                                                                                <field name="VAR" id="pJD!)Q9u32L[_fW3wffa" variabletype="">coin</field>
                                                                                                               </block>
                                                                                                             </value>
-                                                                                                            <value name="pathString">
-                                                                                                              <shadow type="animation_path" id="ZMM[dFutZs_LnFASYQ4#">
-                                                                                                                <field name="animationPath">animation.bounceLeft</field>
-                                                                                                              </shadow>
-                                                                                                              <block type="text">
-                                                                                                                <field name="TEXT">c 0 -100 0 100 0 0</field>
-                                                                                                              </block>
-                                                                                                            </value>
-                                                                                                            <value name="duration">
-                                                                                                              <shadow type="timePicker">
-                                                                                                                <field name="ms">2000</field>
-                                                                                                              </shadow>
-                                                                                                            </value>
-                                                                                                            <value name="loop">
-                                                                                                              <shadow type="toggleOnOff">
-                                                                                                                <field name="on">true</field>
+                                                                                                            <value name="value">
+                                                                                                              <shadow type="math_number">
+                                                                                                                <field name="NUM">-5</field>
                                                                                                               </shadow>
                                                                                                             </value>
                                                                                                             <next>
-                                                                                                              <block type="startEffectOnSprite">
-                                                                                                                <mutation _expanded="0" _input_init="true"></mutation>
-                                                                                                                <field name="effect">effects.fire</field>
+                                                                                                              <block type="run_image_animation">
                                                                                                                 <value name="sprite">
                                                                                                                   <block type="variables_get">
-                                                                                                                    <field name="VAR" id="2i.h5_9+l*jozyY^3%Wi" variabletype="">fireball</field>
+                                                                                                                    <field name="VAR" id="pJD!)Q9u32L[_fW3wffa" variabletype="">coin</field>
                                                                                                                   </block>
                                                                                                                 </value>
-                                                                                                                <value name="duration">
+                                                                                                                <value name="frames">
+                                                                                                                  <block type="lists_create_with" inline="false">
+                                                                                                                    <mutation items="8"></mutation>
+                                                                                                                    <value name="ADD0">
+                                                                                                                      <shadow type="screen_image_picker" id="6CAA8cyRhNq]{1Bpg[Dp">
+                                                                                                                        <field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+                    
+                    
+                            
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                                    
+                                                                            
+                                                                            
+                                                                            
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                                                
+                                                                                                                        </field>
+                                                                                                                      </shadow>
+                                                                                                                      <block type="screen_image_picker">
+                                                                                                                        <field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . f f f f . . . . . . 
+. . . . . f 5 5 5 5 f . . . . . 
+. . . . f 5 4 4 4 4 5 f . . . . 
+. . . f 5 4 5 5 5 5 5 5 f . . . 
+. . . f 5 4 5 5 5 5 5 5 f . . . 
+. . . f 5 4 5 5 5 5 5 4 f . . . 
+. . . f 5 4 5 5 5 5 5 4 f . . . 
+. . . . f 5 5 5 5 5 4 f . . . . 
+. . . . . f 5 5 4 4 f . . . . . 
+. . . . . . f f f f . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+                                                                                                                        </field>
+                                                                                                                      </block>
+                                                                                                                    </value>
+                                                                                                                    <value name="ADD1">
+                                                                                                                      <shadow type="screen_image_picker" id="m^I_AO.WXW%`L4c%c~Ph">
+                                                                                                                        <field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+                    
+                    
+                            
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                                    
+                                                                            
+                                                                            
+                                                                            
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                                                
+                                                                                                                        </field>
+                                                                                                                      </shadow>
+                                                                                                                      <block type="screen_image_picker">
+                                                                                                                        <field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . f f f f . . . . . . 
+. . . . . f 5 5 5 5 f . . . . . 
+. . . . f 5 5 4 4 5 5 f . . . . 
+. . . . f 5 4 5 5 5 5 f . . . . 
+. . . . f 5 4 5 5 5 5 f . . . . 
+. . . . f 5 4 5 5 5 4 f . . . . 
+. . . . f 5 4 5 5 5 4 f . . . . 
+. . . . f 5 4 5 5 5 4 f . . . . 
+. . . . . f 5 5 4 4 f . . . . . 
+. . . . . . f f f f . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+                                                                                                                        </field>
+                                                                                                                      </block>
+                                                                                                                    </value>
+                                                                                                                    <value name="ADD2">
+                                                                                                                      <shadow type="screen_image_picker" id="b?O;k+tM5QtzWfkd)3t~">
+                                                                                                                        <field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+                                                                    
+                                                                    
+                                                                                    
+                                                                            
+                                                                            
+                                                                            
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                                                
+                                                                                                                        </field>
+                                                                                                                      </shadow>
+                                                                                                                      <block type="screen_image_picker">
+                                                                                                                        <field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . f f . . . . . . . 
+. . . . . . f 5 5 f . . . . . . 
+. . . . . f 5 4 5 5 f . . . . . 
+. . . . . f 5 4 5 5 f . . . . . 
+. . . . . f 5 4 5 5 f . . . . . 
+. . . . . f 5 4 5 4 f . . . . . 
+. . . . . f 5 4 5 4 f . . . . . 
+. . . . . f 5 5 5 4 f . . . . . 
+. . . . . . f 5 4 f . . . . . . 
+. . . . . . . f f . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+                                                                                                                        </field>
+                                                                                                                      </block>
+                                                                                                                    </value>
+                                                                                                                    <value name="ADD3">
+                                                                                                                      <shadow type="screen_image_picker" id="(I3$D}ld?Id)xW]%J!1o">
+                                                                                                                        <field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+                    
+                    
+                            
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                                    
+                                                                            
+                                                                            
+                                                                            
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                                                
+                                                                                                                        </field>
+                                                                                                                      </shadow>
+                                                                                                                      <block type="screen_image_picker">
+                                                                                                                        <field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . f f . . . . . . . 
+. . . . . . f 5 5 f . . . . . . 
+. . . . . . f 4 5 f . . . . . . 
+. . . . . . f 4 5 f . . . . . . 
+. . . . . . f 4 5 f . . . . . . 
+. . . . . . f 4 5 f . . . . . . 
+. . . . . . f 4 5 f . . . . . . 
+. . . . . . f 5 5 f . . . . . . 
+. . . . . . f 5 4 f . . . . . . 
+. . . . . . . f f . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+                                                                                                                        </field>
+                                                                                                                      </block>
+                                                                                                                    </value>
+                                                                                                                    <value name="ADD4">
+                                                                                                                      <shadow type="screen_image_picker" id="X-,AcpW*vqm~oU44OwM8">
+                                                                                                                        <field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+                    
+                    
+                            
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+                                                                                    
+                                                                            
+                                                                            
+                                                                            
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                                                
+                                                                                                                        </field>
+                                                                                                                      </shadow>
+                                                                                                                      <block type="screen_image_picker">
+                                                                                                                        <field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . f f . . . . . . . 
+. . . . . . . f f . . . . . . . 
+. . . . . . . f f . . . . . . . 
+. . . . . . . f f . . . . . . . 
+. . . . . . . f f . . . . . . . 
+. . . . . . . f f . . . . . . . 
+. . . . . . . f f . . . . . . . 
+. . . . . . . f f . . . . . . . 
+. . . . . . . f f . . . . . . . 
+. . . . . . . f f . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+                                                                                                                        </field>
+                                                                                                                      </block>
+                                                                                                                    </value>
+                                                                                                                    <value name="ADD5">
+                                                                                                                      <shadow type="screen_image_picker" id="QgRQ#FS9TbHe^eo^)gjr">
+                                                                                                                        <field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+                                                                                    
+                                                                            
+                                                                            
+                                                                            
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                                                
+                                                                                                                        </field>
+                                                                                                                      </shadow>
+                                                                                                                      <block type="screen_image_picker">
+                                                                                                                        <field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . f f . . . . . . . 
+. . . . . . f 5 5 f . . . . . . 
+. . . . . . f 4 5 f . . . . . . 
+. . . . . . f 4 5 f . . . . . . 
+. . . . . . f 4 5 f . . . . . . 
+. . . . . . f 4 5 f . . . . . . 
+. . . . . . f 4 5 f . . . . . . 
+. . . . . . f 5 5 f . . . . . . 
+. . . . . . f 5 4 f . . . . . . 
+. . . . . . . f f . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+                                                                                                                        </field>
+                                                                                                                      </block>
+                                                                                                                    </value>
+                                                                                                                    <value name="ADD6">
+                                                                                                                      <shadow type="screen_image_picker" id="|:xya6TcqPr_a/3N3S{|">
+                                                                                                                        <field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+                                                                    
+                                                                    
+                                                                                    
+                                                                            
+                                                                            
+                                                                            
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                                                
+                                                                                                                        </field>
+                                                                                                                      </shadow>
+                                                                                                                      <block type="screen_image_picker">
+                                                                                                                        <field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . f f . . . . . . . 
+. . . . . . f 5 5 f . . . . . . 
+. . . . . f 5 4 5 5 f . . . . . 
+. . . . . f 5 4 5 5 f . . . . . 
+. . . . . f 5 4 5 5 f . . . . . 
+. . . . . f 5 4 5 4 f . . . . . 
+. . . . . f 5 4 5 4 f . . . . . 
+. . . . . f 5 5 5 4 f . . . . . 
+. . . . . . f 5 4 f . . . . . . 
+. . . . . . . f f . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+                                                                                                                        </field>
+                                                                                                                      </block>
+                                                                                                                    </value>
+                                                                                                                    <value name="ADD7">
+                                                                                                                      <shadow type="screen_image_picker" id="q-m_mAq4otct7G[#XD1z">
+                                                                                                                        <field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+                                                                    
+                                                                    
+                                                                                    
+                                                                            
+                                                                            
+                                                                            
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                                                
+                                                                                                                        </field>
+                                                                                                                      </shadow>
+                                                                                                                      <block type="screen_image_picker">
+                                                                                                                        <field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . f f f f . . . . . . 
+. . . . . f 5 5 5 5 f . . . . . 
+. . . . f 5 5 4 4 5 5 f . . . . 
+. . . . f 5 4 5 5 5 5 f . . . . 
+. . . . f 5 4 5 5 5 5 f . . . . 
+. . . . f 5 4 5 5 5 4 f . . . . 
+. . . . f 5 4 5 5 5 4 f . . . . 
+. . . . f 5 4 5 5 5 4 f . . . . 
+. . . . . f 5 5 4 4 f . . . . . 
+. . . . . . f f f f . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+                                                                                                                        </field>
+                                                                                                                      </block>
+                                                                                                                    </value>
+                                                                                                                  </block>
+                                                                                                                </value>
+                                                                                                                <value name="frameInterval">
                                                                                                                   <shadow type="timePicker">
-                                                                                                                    <field name="ms">200</field>
+                                                                                                                    <field name="ms">100</field>
                                                                                                                   </shadow>
                                                                                                                 </value>
+                                                                                                                <value name="loop">
+                                                                                                                  <shadow type="toggleOnOff">
+                                                                                                                    <field name="on">true</field>
+                                                                                                                  </shadow>
+                                                                                                                </value>
+                                                                                                                <next>
+                                                                                                                  <block type="run_movement_animation">
+                                                                                                                    <value name="sprite">
+                                                                                                                      <block type="variables_get">
+                                                                                                                        <field name="VAR" id="pJD!)Q9u32L[_fW3wffa" variabletype="">coin</field>
+                                                                                                                      </block>
+                                                                                                                    </value>
+                                                                                                                    <value name="pathString">
+                                                                                                                      <shadow type="animation_path">
+                                                                                                                        <field name="animationPath">animation.bobbing</field>
+                                                                                                                      </shadow>
+                                                                                                                    </value>
+                                                                                                                    <value name="duration">
+                                                                                                                      <shadow type="timePicker">
+                                                                                                                        <field name="ms">2000</field>
+                                                                                                                      </shadow>
+                                                                                                                    </value>
+                                                                                                                    <value name="loop">
+                                                                                                                      <shadow type="toggleOnOff">
+                                                                                                                        <field name="on">true</field>
+                                                                                                                      </shadow>
+                                                                                                                    </value>
+                                                                                                                  </block>
+                                                                                                                </next>
                                                                                                               </block>
                                                                                                             </next>
                                                                                                           </block>
@@ -2054,22 +2014,203 @@ c . . . c c c 3 c c c c . . . .
                                                                                                       <block type="gamegettilestype">
                                                                                                         <value name="index">
                                                                                                           <shadow type="colorindexpicker">
-                                                                                                            <field name="index">9</field>
+                                                                                                            <field name="index">5</field>
                                                                                                           </shadow>
                                                                                                         </value>
                                                                                                       </block>
                                                                                                     </value>
                                                                                                     <statement name="DO">
                                                                                                       <block type="variables_set">
-                                                                                                        <field name="VAR" id="6)qyuE{ULIo}!yDlH|C1" variabletype="">squeeze grass</field>
+                                                                                                        <field name="VAR" id="0``;I|`|gBY~o}$dOU{_" variabletype="">bee_flower</field>
                                                                                                         <value name="VALUE">
                                                                                                           <shadow type="math_number">
                                                                                                             <field name="NUM">0</field>
                                                                                                           </shadow>
                                                                                                           <block type="spritescreate">
                                                                                                             <value name="img">
-                                                                                                              <shadow type="screen_image_picker" id="i)IfeCK,IE|yNyjoY{$V">
+                                                                                                              <shadow type="screen_image_picker">
                                                                                                                 <field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . 5 . . . . . . . . 
+. . . . . . 2 2 2 . . . . . . . 
+. . . . . . 4 2 4 . . . . . . . 
+. . . . 7 7 8 7 8 7 7 . . . . . 
+. . . . 6 7 7 7 7 7 6 . . . . . 
+. . . . . 6 6 7 6 6 . . . . . . 
+. . . . . . . 7 . . . . . . . . 
+`
+                                                                                                                </field>
+                                                                                                              </shadow>
+                                                                                                            </value>
+                                                                                                            <value name="kind">
+                                                                                                              <shadow type="spritekind">
+                                                                                                                <field name="MEMBER">Flower</field>
+                                                                                                              </shadow>
+                                                                                                            </value>
+                                                                                                          </block>
+                                                                                                        </value>
+                                                                                                        <next>
+                                                                                                          <block type="gameplaceontile">
+                                                                                                            <value name="tile">
+                                                                                                              <block type="variables_get">
+                                                                                                                <field name="VAR" id="-c^vP7b|X)QK@_.^-i^," variabletype="">value</field>
+                                                                                                              </block>
+                                                                                                            </value>
+                                                                                                            <value name="sprite">
+                                                                                                              <block type="variables_get">
+                                                                                                                <field name="VAR" id="0``;I|`|gBY~o}$dOU{_" variabletype="">bee_flower</field>
+                                                                                                              </block>
+                                                                                                            </value>
+                                                                                                          </block>
+                                                                                                        </next>
+                                                                                                      </block>
+                                                                                                    </statement>
+                                                                                                    <next>
+                                                                                                      <block type="pxt_controls_for_of">
+                                                                                                        <value name="VAR">
+                                                                                                          <shadow type="variables_get_reporter">
+                                                                                                            <field name="VAR" id="-c^vP7b|X)QK@_.^-i^," variabletype="">value</field>
+                                                                                                          </shadow>
+                                                                                                        </value>
+                                                                                                        <value name="LIST">
+                                                                                                          <shadow type="variables_get" id="r/jgbHCMpXer4WGo+NAP">
+                                                                                                            <field name="VAR" id="Qe]Ww2AW:6HD.%to?XKV" variabletype="">list</field>
+                                                                                                          </shadow>
+                                                                                                          <block type="gamegettilestype">
+                                                                                                            <value name="index">
+                                                                                                              <shadow type="colorindexpicker">
+                                                                                                                <field name="index">10</field>
+                                                                                                              </shadow>
+                                                                                                            </value>
+                                                                                                          </block>
+                                                                                                        </value>
+                                                                                                        <statement name="DO">
+                                                                                                          <block type="variables_set">
+                                                                                                            <field name="VAR" id="2i.h5_9+l*jozyY^3%Wi" variabletype="">fireball</field>
+                                                                                                            <value name="VALUE">
+                                                                                                              <shadow type="math_number">
+                                                                                                                <field name="NUM">0</field>
+                                                                                                              </shadow>
+                                                                                                              <block type="spritescreate">
+                                                                                                                <value name="img">
+                                                                                                                  <shadow type="screen_image_picker">
+                                                                                                                    <field name="img">img`
+. . . . . . . . 
+. . . . . . . . 
+. . 2 4 4 . . . 
+. 2 4 4 4 2 . . 
+. 2 2 4 4 4 . . 
+. 2 2 2 4 2 . . 
+. . 2 2 2 . . . 
+. . . . . . . . 
+`
+                                                                                                                    </field>
+                                                                                                                  </shadow>
+                                                                                                                </value>
+                                                                                                                <value name="kind">
+                                                                                                                  <shadow type="spritekind">
+                                                                                                                    <field name="MEMBER">Trap</field>
+                                                                                                                  </shadow>
+                                                                                                                </value>
+                                                                                                              </block>
+                                                                                                            </value>
+                                                                                                            <next>
+                                                                                                              <block type="gameplaceontile">
+                                                                                                                <value name="tile">
+                                                                                                                  <block type="variables_get">
+                                                                                                                    <field name="VAR" id="-c^vP7b|X)QK@_.^-i^," variabletype="">value</field>
+                                                                                                                  </block>
+                                                                                                                </value>
+                                                                                                                <value name="sprite">
+                                                                                                                  <block type="variables_get">
+                                                                                                                    <field name="VAR" id="2i.h5_9+l*jozyY^3%Wi" variabletype="">fireball</field>
+                                                                                                                  </block>
+                                                                                                                </value>
+                                                                                                                <next>
+                                                                                                                  <block type="run_movement_animation">
+                                                                                                                    <value name="sprite">
+                                                                                                                      <block type="variables_get">
+                                                                                                                        <field name="VAR" id="2i.h5_9+l*jozyY^3%Wi" variabletype="">fireball</field>
+                                                                                                                      </block>
+                                                                                                                    </value>
+                                                                                                                    <value name="pathString">
+                                                                                                                      <shadow type="animation_path" id="ZMM[dFutZs_LnFASYQ4#">
+                                                                                                                        <field name="animationPath">animation.bounceLeft</field>
+                                                                                                                      </shadow>
+                                                                                                                      <block type="text">
+                                                                                                                        <field name="TEXT">c 0 -100 0 100 0 0</field>
+                                                                                                                      </block>
+                                                                                                                    </value>
+                                                                                                                    <value name="duration">
+                                                                                                                      <shadow type="timePicker">
+                                                                                                                        <field name="ms">2000</field>
+                                                                                                                      </shadow>
+                                                                                                                    </value>
+                                                                                                                    <value name="loop">
+                                                                                                                      <shadow type="toggleOnOff">
+                                                                                                                        <field name="on">true</field>
+                                                                                                                      </shadow>
+                                                                                                                    </value>
+                                                                                                                    <next>
+                                                                                                                      <block type="startEffectOnSprite">
+                                                                                                                        <mutation _expanded="0" _input_init="true"></mutation>
+                                                                                                                        <field name="effect">effects.fire</field>
+                                                                                                                        <value name="sprite">
+                                                                                                                          <block type="variables_get">
+                                                                                                                            <field name="VAR" id="2i.h5_9+l*jozyY^3%Wi" variabletype="">fireball</field>
+                                                                                                                          </block>
+                                                                                                                        </value>
+                                                                                                                        <value name="duration">
+                                                                                                                          <shadow type="timePicker">
+                                                                                                                            <field name="ms">200</field>
+                                                                                                                          </shadow>
+                                                                                                                        </value>
+                                                                                                                      </block>
+                                                                                                                    </next>
+                                                                                                                  </block>
+                                                                                                                </next>
+                                                                                                              </block>
+                                                                                                            </next>
+                                                                                                          </block>
+                                                                                                        </statement>
+                                                                                                        <next>
+                                                                                                          <block type="pxt_controls_for_of">
+                                                                                                            <value name="VAR">
+                                                                                                              <shadow type="variables_get_reporter">
+                                                                                                                <field name="VAR" id="-c^vP7b|X)QK@_.^-i^," variabletype="">value</field>
+                                                                                                              </shadow>
+                                                                                                            </value>
+                                                                                                            <value name="LIST">
+                                                                                                              <shadow type="variables_get" id="r/jgbHCMpXer4WGo+NAP">
+                                                                                                                <field name="VAR" id="Qe]Ww2AW:6HD.%to?XKV" variabletype="">list</field>
+                                                                                                              </shadow>
+                                                                                                              <block type="gamegettilestype">
+                                                                                                                <value name="index">
+                                                                                                                  <shadow type="colorindexpicker">
+                                                                                                                    <field name="index">9</field>
+                                                                                                                  </shadow>
+                                                                                                                </value>
+                                                                                                              </block>
+                                                                                                            </value>
+                                                                                                            <statement name="DO">
+                                                                                                              <block type="variables_set">
+                                                                                                                <field name="VAR" id="6)qyuE{ULIo}!yDlH|C1" variabletype="">squeeze grass</field>
+                                                                                                                <value name="VALUE">
+                                                                                                                  <shadow type="math_number">
+                                                                                                                    <field name="NUM">0</field>
+                                                                                                                  </shadow>
+                                                                                                                  <block type="spritescreate">
+                                                                                                                    <value name="img">
+                                                                                                                      <shadow type="screen_image_picker" id="i)IfeCK,IE|yNyjoY{$V">
+                                                                                                                        <field name="img">img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -2087,10 +2228,11 @@ c . . . c c c 3 c c c c . . . .
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `
-                                                                                                                </field>
-                                                                                                              </shadow>
-                                                                                                              <block type="tile_image_picker">
-                                                                                                                <field name="img">img`
+                                                                                                                
+                                                                                                                        </field>
+                                                                                                                      </shadow>
+                                                                                                                      <block type="tile_image_picker">
+                                                                                                                        <field name="img">img`
 e e e e e e e e e e e e e e e e 
 e e e e e e e e e e e e e e e e 
 e e e e e e e e e b e e e e e e 
@@ -2108,39 +2250,140 @@ e e 7 e e 7 e e e e e e e e 7 e
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `
-                                                                                                                </field>
+                                                                                                                        </field>
+                                                                                                                      </block>
+                                                                                                                    </value>
+                                                                                                                    <value name="kind">
+                                                                                                                      <shadow type="spritekind">
+                                                                                                                        <field name="MEMBER">Terrain</field>
+                                                                                                                      </shadow>
+                                                                                                                    </value>
+                                                                                                                  </block>
+                                                                                                                </value>
+                                                                                                                <next>
+                                                                                                                  <block type="gameplaceontile">
+                                                                                                                    <value name="tile">
+                                                                                                                      <block type="variables_get">
+                                                                                                                        <field name="VAR" id="-c^vP7b|X)QK@_.^-i^," variabletype="">value</field>
+                                                                                                                      </block>
+                                                                                                                    </value>
+                                                                                                                    <value name="sprite">
+                                                                                                                      <block type="variables_get">
+                                                                                                                        <field name="VAR" id="6)qyuE{ULIo}!yDlH|C1" variabletype="">squeeze grass</field>
+                                                                                                                      </block>
+                                                                                                                    </value>
+                                                                                                                  </block>
+                                                                                                                </next>
                                                                                                               </block>
-                                                                                                            </value>
-                                                                                                            <value name="kind">
-                                                                                                              <shadow type="spritekind">
-                                                                                                                <field name="MEMBER">Terrain</field>
-                                                                                                              </shadow>
-                                                                                                            </value>
-                                                                                                          </block>
-                                                                                                        </value>
-                                                                                                        <next>
-                                                                                                          <block type="gameplaceontile">
-                                                                                                            <value name="tile">
-                                                                                                              <block type="variables_get">
-                                                                                                                <field name="VAR" id="-c^vP7b|X)QK@_.^-i^," variabletype="">value</field>
+                                                                                                            </statement>
+                                                                                                            <next>
+                                                                                                              <block type="pxt_controls_for_of">
+                                                                                                                <value name="VAR">
+                                                                                                                  <shadow type="variables_get_reporter">
+                                                                                                                    <field name="VAR" id="-c^vP7b|X)QK@_.^-i^," variabletype="">value</field>
+                                                                                                                  </shadow>
+                                                                                                                </value>
+                                                                                                                <value name="LIST">
+                                                                                                                  <shadow type="variables_get" id="r/jgbHCMpXer4WGo+NAP">
+                                                                                                                    <field name="VAR" id="Qe]Ww2AW:6HD.%to?XKV" variabletype="">list</field>
+                                                                                                                  </shadow>
+                                                                                                                  <block type="gamegettilestype">
+                                                                                                                    <value name="index">
+                                                                                                                      <shadow type="colorindexpicker">
+                                                                                                                        <field name="index">6</field>
+                                                                                                                      </shadow>
+                                                                                                                    </value>
+                                                                                                                  </block>
+                                                                                                                </value>
+                                                                                                                <statement name="DO">
+                                                                                                                  <block type="variables_set">
+                                                                                                                    <field name="VAR" id="/p3K}%^{)KSZFI^h%Lj2" variabletype="">spikes</field>
+                                                                                                                    <value name="VALUE">
+                                                                                                                      <shadow type="math_number">
+                                                                                                                        <field name="NUM">0</field>
+                                                                                                                      </shadow>
+                                                                                                                      <block type="spritescreate">
+                                                                                                                        <value name="img">
+                                                                                                                          <shadow type="screen_image_picker" id="i)IfeCK,IE|yNyjoY{$V">
+                                                                                                                            <field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+                                                                                                                
+                                                                                                                            </field>
+                                                                                                                          </shadow>
+                                                                                                                          <block type="tile_image_picker">
+                                                                                                                            <field name="img">img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . d . . . d . . . d . . . d . 
+. . d . . . d . . . d . . . d . 
+. d d 1 . d d 1 . d d 1 . d d 1 
+1 d d d 1 d d d 1 d d d 1 d d d 
+e e e e e e e e e e e e e e e e 
+e e e e e e e e e e e e e e e e 
+e e e e e e e e e e e e e e e e 
+e b e e e e e e e e e b e e e e 
+e e e e e e e e e e e e e e e e 
+e e e e e b e e e e e e e e e e 
+e e e e e e e e e e e e b e e e 
+e e e e e e e e e e e e e e e e 
+e e e e e e e e e e e e e e e e 
+`
+                                                                                                                            </field>
+                                                                                                                          </block>
+                                                                                                                        </value>
+                                                                                                                        <value name="kind">
+                                                                                                                          <shadow type="spritekind">
+                                                                                                                            <field name="MEMBER">spikes</field>
+                                                                                                                          </shadow>
+                                                                                                                        </value>
+                                                                                                                      </block>
+                                                                                                                    </value>
+                                                                                                                    <next>
+                                                                                                                      <block type="gameplaceontile">
+                                                                                                                        <value name="tile">
+                                                                                                                          <block type="variables_get">
+                                                                                                                            <field name="VAR" id="-c^vP7b|X)QK@_.^-i^," variabletype="">value</field>
+                                                                                                                          </block>
+                                                                                                                        </value>
+                                                                                                                        <value name="sprite">
+                                                                                                                          <block type="variables_get">
+                                                                                                                            <field name="VAR" id="/p3K}%^{)KSZFI^h%Lj2" variabletype="">spikes</field>
+                                                                                                                          </block>
+                                                                                                                        </value>
+                                                                                                                      </block>
+                                                                                                                    </next>
+                                                                                                                  </block>
+                                                                                                                </statement>
+                                                                                                                <next>
+                                                                                                                  <block type="hudSetLife">
+                                                                                                                    <value name="value">
+                                                                                                                      <shadow type="math_number">
+                                                                                                                        <field name="NUM">3</field>
+                                                                                                                      </shadow>
+                                                                                                                    </value>
+                                                                                                                  </block>
+                                                                                                                </next>
                                                                                                               </block>
-                                                                                                            </value>
-                                                                                                            <value name="sprite">
-                                                                                                              <block type="variables_get">
-                                                                                                                <field name="VAR" id="6)qyuE{ULIo}!yDlH|C1" variabletype="">squeeze grass</field>
-                                                                                                              </block>
-                                                                                                            </value>
+                                                                                                            </next>
                                                                                                           </block>
                                                                                                         </next>
-                                                                                                      </block>
-                                                                                                    </statement>
-                                                                                                    <next>
-                                                                                                      <block type="hudSetLife">
-                                                                                                        <value name="value">
-                                                                                                          <shadow type="math_number">
-                                                                                                            <field name="NUM">3</field>
-                                                                                                          </shadow>
-                                                                                                        </value>
                                                                                                       </block>
                                                                                                     </next>
                                                                                                   </block>
@@ -2192,49 +2435,7 @@ e e 7 e e 7 e e e e e e e e 7 e
       </block>
     </statement>
   </block>
-  <block type="screen_image_picker" disabled="true" x="2991" y="70">
-    <field name="img">img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . f . . . 
-. . . . . . . . . . . . f f f . 
-. . . . . . . . . . . . f f 5 f 
-. . . . . f f f f f f f f f f f 
-f f f f f f f f f f f f f f . . 
-. . . . f f f f f f f f f . . . 
-. . . . f . f . . . f . f . . . 
-. . . . f . f . . . f . f . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`
-    </field>
-  </block>
-  <block type="screen_image_picker" disabled="true" x="3110" y="70">
-    <field name="img">img`
-. . . 1 1 1 1 . . . . . . . . . 
-. . . 1 3 3 1 . . 1 1 1 . . . . 
-. . . . . . 1 . 1 1 3 3 1 . . . 
-. . . . . . 1 1 1 . . . . . . . 
-. . . . . 1 c 1 c 1 . . . . . . 
-. . . . . 1 1 1 1 1 . . . . . . 
-. . . . . 1 c 1 c 1 . . . . . . 
-. . . . . . 1 c 1 . . . . . . . 
-. . . . . . . 1 . . . . . . . . 
-. . . . . . 1 1 1 . 1 1 . . . . 
-. . . . 1 1 1 1 1 1 1 . . . . . 
-. . . 1 1 . 1 1 1 . . . . . . . 
-. . . . . . 1 1 1 . . . . . . . 
-. . . . . 1 1 1 1 1 . . . . . . 
-. . . . . 1 . . . 1 . . . . . . 
-. . . . 1 1 . . . 1 1 . . . . . 
-`
-    </field>
-  </block>
-  <block type="tile_image_picker" disabled="true" x="3229" y="70">
+  <block type="tile_image_picker" disabled="true" x="3639" y="200">
     <field name="img">img`
 . . . . 7 7 7 7 7 7 7 7 . . . . 
 . . 7 7 e e e e e e e 7 . . . . 
@@ -2255,7 +2456,7 @@ f f f f f f f f f f f f f f . .
 `
     </field>
   </block>
-  <block type="tile_image_picker" disabled="true" x="3891" y="70">
+  <block type="tile_image_picker" disabled="true" x="4301" y="200">
     <field name="img">img`
 . . . . . . . . . . . . . . . . 
 . . 7 7 7 7 7 7 7 . . . . . . . 
@@ -2276,7 +2477,7 @@ f f f f f f f f f f f f f f . .
 `
     </field>
   </block>
-  <block type="tile_image_picker" disabled="true" x="4010" y="70">
+  <block type="tile_image_picker" disabled="true" x="4420" y="200">
     <field name="img">img`
 e c e c e c e c e c e c e . . . 
 c e e e e e e e e e e e c . . . 
@@ -2297,10 +2498,10 @@ c e e e e e e e e e e e c . . .
 `
     </field>
   </block>
-  <block type="variables_get" disabled="true" x="4129" y="70">
+  <block type="variables_get" disabled="true" x="4539" y="200">
     <field name="VAR" id=";}N:wbO5=GH$KM}lxI:[" variabletype="">bee</field>
   </block>
-  <block type="tile_image_picker" disabled="true" x="4253" y="70">
+  <block type="tile_image_picker" disabled="true" x="4663" y="200">
     <field name="img">img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -2321,7 +2522,7 @@ e e e e e e e e e e 6 7 7 . . .
 `
     </field>
   </block>
-  <block type="tile_image_picker" disabled="true" x="4372" y="70">
+  <block type="tile_image_picker" disabled="true" x="4782" y="200">
     <field name="img">img`
 7 e f f f f f f f f f f f f f e 
 7 e e e 7 e f f f f f f f f e e 
@@ -2342,7 +2543,7 @@ c . . . c c c 3 c c c c . . . .
 `
     </field>
   </block>
-  <block type="spritesollisions" x="160" y="360">
+  <block type="spritesollisions" x="570" y="490">
     <value name="HANDLER_DRAG_PARAM_sprite">
       <shadow type="argument_reporter_custom">
         <mutation typename="Sprite"></mutation>
@@ -2385,7 +2586,7 @@ c . . . c c c 3 c c c c . . . .
       </block>
     </statement>
   </block>
-  <block type="gameinterval" x="-410" y="810">
+  <block type="gameinterval" x="0" y="940">
     <value name="period">
       <shadow type="timePicker">
         <field name="ms">100</field>
@@ -2540,7 +2741,7 @@ c . . . c c c 3 c c c c . . . .
       </block>
     </statement>
   </block>
-  <block type="gameupdate" x="650" y="810">
+  <block type="gameupdate" x="1060" y="940">
     <statement name="HANDLER">
       <block type="controls_if">
         <mutation elseif="1" else="1"></mutation>
@@ -2603,6 +2804,7 @@ c . . . c c c 3 c c c c . . . .
                 
                     
                     
+                
                 
                 
                 
@@ -2699,6 +2901,7 @@ f f . . . . . . . . . . . . . .
                 
                     
                     
+                
                 
                 
                 
@@ -2819,6 +3022,7 @@ f . . . f . f 1 1 . . . . . . .
                     
                     
                     
+                        
                         </field>
                       </shadow>
                       <block type="screen_image_picker">
@@ -2892,6 +3096,7 @@ f f f f f f f f f f . . f f 5 f
                     
                     
                     
+                        
                         </field>
                       </shadow>
                       <block type="screen_image_picker">
@@ -3008,6 +3213,7 @@ f . . . . . . . . . . . . . . .
                     
                     
                     
+                        
                         </field>
                       </shadow>
                       <block type="screen_image_picker">
@@ -3081,6 +3287,7 @@ f f f f f f f f f f f f f f . .
                     
                     
                     
+                        
                         </field>
                       </shadow>
                       <block type="screen_image_picker">
@@ -3397,6 +3604,7 @@ f f f f f f f f f f f f f f . .
                         
                         
                         
+                        
                         </field>
                       </shadow>
                       <block type="spriteimage">
@@ -3416,7 +3624,7 @@ f f f f f f f f f f f f f f . .
       </block>
     </statement>
   </block>
-  <block type="keyonevent" x="1300" y="860">
+  <block type="keyonevent" x="1710" y="990">
     <field name="button">controller.A</field>
     <field name="event">ControllerButtonEvent.Pressed</field>
     <statement name="HANDLER">
@@ -3457,7 +3665,7 @@ f f f f f f f f f f f f f f . .
       </block>
     </statement>
   </block>
-  <block type="function_definition" x="-370" y="1670">
+  <block type="function_definition" x="40" y="1800">
     <mutation name="launch" functionid="9v[e~(%fa@$U/:yl)kc0"></mutation>
     <field name="function_title">function</field>
     <field name="function_name">launch</field>
@@ -3538,7 +3746,7 @@ f f f f f f f f f f f f f f . .
       </block>
     </statement>
   </block>
-  <block type="spritesoverlap" x="-330" y="2110">
+  <block type="spritesoverlap" x="80" y="2240">
     <value name="HANDLER_DRAG_PARAM_sprite">
       <shadow type="argument_reporter_custom">
         <mutation typename="Sprite"></mutation>
@@ -3638,47 +3846,7 @@ f f f f f f f f f f f f f f . .
       </block>
     </statement>
   </block>
-  <block type="function_definition" x="1370" y="2150">
-    <mutation name="go" functionid="+0o_3?neg--Dby%b]=Yr"></mutation>
-    <field name="function_title">function</field>
-    <field name="function_name">go</field>
-    <statement name="STACK">
-      <block type="Sprite_blockCombine_set">
-        <field name="property">Sprite.vx@set</field>
-        <value name="mySprite">
-          <block type="variables_get">
-            <field name="VAR" id="/_?aD7w=ZD4,f~eLeqRK" variabletype="">cat</field>
-          </block>
-        </value>
-        <value name="value">
-          <shadow type="math_number">
-            <field name="NUM">80</field>
-          </shadow>
-        </value>
-      </block>
-    </statement>
-  </block>
-  <block type="function_definition" x="1340" y="2320">
-    <mutation name="stop" functionid="j%XT@ibX6rt-mhK909E="></mutation>
-    <field name="function_title">function</field>
-    <field name="function_name">stop</field>
-    <statement name="STACK">
-      <block type="Sprite_blockCombine_set">
-        <field name="property">Sprite.vx@set</field>
-        <value name="mySprite">
-          <block type="variables_get">
-            <field name="VAR" id="/_?aD7w=ZD4,f~eLeqRK" variabletype="">cat</field>
-          </block>
-        </value>
-        <value name="value">
-          <shadow type="math_number">
-            <field name="NUM">0</field>
-          </shadow>
-        </value>
-      </block>
-    </statement>
-  </block>
-  <block type="spritesoverlap" x="-350" y="2530">
+  <block type="spritesoverlap" x="60" y="2660">
     <value name="HANDLER_DRAG_PARAM_sprite">
       <shadow type="argument_reporter_custom">
         <mutation typename="Sprite"></mutation>
@@ -3709,7 +3877,27 @@ f f f f f f f f f f f f f f . .
       </block>
     </statement>
   </block>
-  <block type="function_definition" x="1280" y="2520">
+  <block type="function_definition" x="1530" y="2750">
+    <mutation name="stop" functionid="j%XT@ibX6rt-mhK909E="></mutation>
+    <field name="function_title">function</field>
+    <field name="function_name">stop</field>
+    <statement name="STACK">
+      <block type="Sprite_blockCombine_set">
+        <field name="property">Sprite.vx@set</field>
+        <value name="mySprite">
+          <block type="variables_get">
+            <field name="VAR" id="/_?aD7w=ZD4,f~eLeqRK" variabletype="">cat</field>
+          </block>
+        </value>
+        <value name="value">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="function_definition" x="1970" y="2770">
     <mutation name="jump" functionid="^Fb98HQC;.N=av(z;Ihi"></mutation>
     <field name="function_title">function</field>
     <field name="function_name">jump</field>
@@ -3729,7 +3917,27 @@ f f f f f f f f f f f f f f . .
       </block>
     </statement>
   </block>
-  <block type="spritesoverlap" x="-310" y="2850">
+  <block type="function_definition" x="1230" y="2870">
+    <mutation name="go" functionid="+0o_3?neg--Dby%b]=Yr"></mutation>
+    <field name="function_title">function</field>
+    <field name="function_name">go</field>
+    <statement name="STACK">
+      <block type="Sprite_blockCombine_set">
+        <field name="property">Sprite.vx@set</field>
+        <value name="mySprite">
+          <block type="variables_get">
+            <field name="VAR" id="/_?aD7w=ZD4,f~eLeqRK" variabletype="">cat</field>
+          </block>
+        </value>
+        <value name="value">
+          <shadow type="math_number">
+            <field name="NUM">80</field>
+          </shadow>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="spritesoverlap" x="100" y="2980">
     <value name="HANDLER_DRAG_PARAM_sprite">
       <shadow type="argument_reporter_custom">
         <mutation typename="Sprite"></mutation>
@@ -3968,6 +4176,7 @@ f f f f f f f f f f f f f f . .
                                     
                                     
                                     
+                                    
                                     </field>
                                   </shadow>
                                   <block type="screen_image_picker">
@@ -4021,6 +4230,7 @@ f f f f f f f f f f f f f f . .
                             
                             
                             
+                                    
                                     
                                     
                                     
@@ -4083,7 +4293,7 @@ f f f f f f f f f f f f f f . .
       </block>
     </statement>
   </block>
-  <block type="device_pause" disabled="true" x="1600" y="2820">
+  <block type="device_pause" disabled="true" x="2010" y="2950">
     <value name="pause">
       <shadow type="timePicker">
         <field name="ms">1000</field>
@@ -4221,7 +4431,7 @@ f f f f f f f f f f f f f f . .
       </block>
     </next>
   </block>
-  <block type="spritesoverlap" x="280" y="3420">
+  <block type="spritesoverlap" x="50" y="3870">
     <value name="HANDLER_DRAG_PARAM_sprite">
       <shadow type="argument_reporter_custom">
         <mutation typename="Sprite"></mutation>
@@ -4305,7 +4515,7 @@ f f f f f f f f f f f f f f . .
       </block>
     </statement>
   </block>
-  <block type="spritesoverlap" x="1910" y="3750">
+  <block type="spritesoverlap" x="3090" y="4170">
     <value name="HANDLER_DRAG_PARAM_sprite">
       <shadow type="argument_reporter_custom">
         <mutation typename="Sprite"></mutation>
@@ -4387,6 +4597,54 @@ f f f f f f f f f f f f f f . .
               <block type="variables_get">
                 <field name="VAR" id="Wnp.NZAFweWpI2$_}`pt" variabletype="">x diff</field>
               </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="spritesoverlap" x="2570" y="4610">
+    <value name="HANDLER_DRAG_PARAM_sprite">
+      <shadow type="argument_reporter_custom">
+        <mutation typename="Sprite"></mutation>
+        <field name="VALUE">sprite</field>
+      </shadow>
+    </value>
+    <value name="kind">
+      <shadow type="spritekind">
+        <field name="MEMBER">Player</field>
+      </shadow>
+    </value>
+    <value name="HANDLER_DRAG_PARAM_otherSprite">
+      <shadow type="argument_reporter_custom">
+        <mutation typename="Sprite"></mutation>
+        <field name="VALUE">otherSprite</field>
+      </shadow>
+    </value>
+    <value name="otherKind">
+      <shadow type="spritekind">
+        <field name="MEMBER">spikes</field>
+      </shadow>
+    </value>
+    <statement name="HANDLER">
+      <block type="Sprite_blockCombine_set">
+        <field name="property">Sprite.vy@set</field>
+        <value name="mySprite">
+          <block type="variables_get">
+            <field name="VAR" id="/_?aD7w=ZD4,f~eLeqRK" variabletype="">cat</field>
+          </block>
+        </value>
+        <value name="value">
+          <shadow type="math_number">
+            <field name="NUM">-100</field>
+          </shadow>
+        </value>
+        <next>
+          <block type="hudChangeLifeBy">
+            <value name="value">
+              <shadow type="math_number">
+                <field name="NUM">-1</field>
+              </shadow>
             </value>
           </block>
         </next>

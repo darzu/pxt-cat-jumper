@@ -1,5 +1,5 @@
 {
-    "name": "Cat Jumper (REFERENCE)",
+    "name": "Jumpy Cat",
     "dependencies": {
         "device": "*",
         "animation": "*",
